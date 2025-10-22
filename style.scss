@@ -1,24 +1,92 @@
 @use "./normalize.scss";
-$primary-color: rgba(129, 0, 235, 1);
+@use "sass:string";
+@use 'sass:color';
 
-@mixin shadow($size: "small", $transition: "normal") {
-	@if $size == "small" {
-		-webkit-box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.2);
-		-moz-box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.2);
-		box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.2);
-	} @else if $size == "normal" {
-		-webkit-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
-		-moz-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
-		box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
+$screen-tiny: 1050px;
+$screen-small: 1200px;
+$screen-medium: 1500px;
+$screen-large: 2000px;
+
+$primary-color: rgba(129, 0, 235, 1);
+$secondary-color: rgba(183, 83, 237, 1);
+$white-color: rgb(248, 248, 248);
+$gray-color: rgb(82, 82, 82);
+$dark-gray-color: rgba(40, 40, 40, 1);
+$light-gray-color: rgb(97, 97, 97);
+$black-color: rgb(12, 12, 12);
+
+$primary-font: "Overpass", "Segoe UI", "sans-serif";
+
+$font-small: 1.2rem;
+$font-medium: 2rem;
+$font-big: 3rem;
+
+$tiny-screen-padding: 3%;
+$small-screen-padding: 5%;
+$medium-screen-padding: 7%;
+$large-screen-padding: 10%;
+
+body {
+	font-family: $primary-font;
+}
+
+@mixin for-tiny-screen {
+	@media (max-width: $screen-tiny) { @content; };
+}
+
+@mixin for-small-screen {
+	@media (max-width: $screen-small) { @content; };
+}
+
+@mixin for-medium-screen {
+	@media (max-width: $screen-medium) { @content; };
+}
+
+@mixin for-large-screen {
+	@media (min-width: $screen-medium) { @content; };
+}
+
+@mixin x-padding ($y-padding: 0px) {
+	@include for-large-screen {
+		padding: $y-padding $large-screen-padding;
+	}
+	@include for-medium-screen {
+		padding: $y-padding $medium-screen-padding;
+	}
+	@include for-small-screen {
+		padding: $y-padding $small-screen-padding;
+	}
+	@include for-tiny-screen {
+		padding: $y-padding $small-screen-padding;
 	}
 }
 
-@mixin transition($transition, $duration: "300ms") {
-   -moz-transition: unquote($transition + " " + $duration);
-   -o-transition: unquote($transition + " " + $duration);
-   -ms-transition: unquote($transition + " " + $duration);
-   -webkit-transition: unquote($transition + " " + $duration);
-   transition: unquote($transition + " " + $duration);
+@mixin shadow($size: "small") {
+	@if $size == "small" {
+		-webkit-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
+		-moz-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
+		box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
+	} @else if $size == "medium" {
+		-webkit-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
+		-moz-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
+		box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
+	} @else if $size == "big" {
+		-webkit-box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.8);
+		-moz-box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.8);
+		box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.8);
+	}
+}
+
+@mixin transition($transitions, $duration: 300ms) {
+	$all: ();
+	@each $transition in $transitions {
+		$all: append($all, string.unquote($transition + " " + $duration), comma);
+	}
+	-webkit-transition: $all;
+	-moz-transition: $all;
+	-o-transition: $all;
+	-ms-transition: $all;
+	transition: $all;
 }
 
 .btn {
@@ -30,6 +98,39 @@ $primary-color: rgba(129, 0, 235, 1);
 	cursor: pointer;
 	outline: inherit;
 
+	&__primary {
+		background-color: $primary-color;
+		padding: 5px 30px;
+		color: $white-color;
+		border-radius: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		@include transition(background-color);
+		&:hover {
+			background-color: darken($primary-color, 5%);
+			color: darken($white-color, 5%)
+		}
+	}
+
+	&__secondary {
+		background-color: $white-color;
+		padding: 5px 30px;
+		color: $black-color;
+		border-radius: 5px;
+		@include shadow();
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		@include transition($transitions: ("box-shadow", "color"));
+		&:hover {
+			color: darken($primary-color, 5%);
+			@include shadow($size: "medium");
+		}
+	}
+
 	&--header-logo {
 		border-radius: 10px;
 		width: 40px;
@@ -37,20 +138,20 @@ $primary-color: rgba(129, 0, 235, 1);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: #8100eb;
-		background: -webkit-linear-gradient(127deg,rgba(129, 0, 235, 1) 0%, rgba(183, 83, 237, 1) 100%);
-		background: -moz-linear-gradient(127deg,rgba(129, 0, 235, 1) 0%, rgba(183, 83, 237, 1) 100%);
-		background: linear-gradient(127deg,rgba(129, 0, 235, 1) 0%, rgba(183, 83, 237, 1) 100%);
+		background: $primary-color;
+		background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
+		background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+		background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient(
 			startColorstr="#8100EB",
 			endColorstr="#B753ED",
 			GradientType=0
 		);
 		&:hover {
-			@include shadow($size: "normal");
+			@include shadow($size: "medium");
 		}
-		@include shadow();
-		@include transition($transition: "box-shadow");
+		@include shadow($size: "small");
+		@include transition($transitions: ("box-shadow"));
 	}
 	&--header-navbar {
 		display: flex;
@@ -62,10 +163,11 @@ $primary-color: rgba(129, 0, 235, 1);
 .header {
 	height: 85px;
 	@include shadow($size: "small");
+	@include x-padding;
 	display: flex;
 	align-items: center;
-	padding: 0px 10%;
 	justify-content: space-between;
+	position: relative;
 
 	&--logo-icon {
 		width: 25px;
@@ -89,7 +191,10 @@ $primary-color: rgba(129, 0, 235, 1);
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		@include transition($transition: "filter");
+		@include transition($transitions: ("filter"));
+		@include for-tiny-screen() {
+			display: none;
+		}
 
 		&__active {
 			color: $primary-color;
@@ -132,4 +237,67 @@ $primary-color: rgba(129, 0, 235, 1);
 			transform: scale(1);
 		}
 	}
+}
+
+.section {
+	@include x-padding($y-padding: 5rem);
+	&--button-container {
+		display: flex;
+		gap: 20px;
+	}
+	&--about {
+		background: #f0fffc;
+		background: -webkit-linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
+		background: -moz-linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
+		background: linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F0FFFC", endColorstr="#D7DBDB", GradientType=0);
+		display: flex;
+		@include for-medium-screen {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+}
+
+.heading {
+	margin: 0;
+	&--1 {
+		color: $primary-color;
+		font-size: $font-big;
+		&__spec {
+			margin: 20px 0;
+		}
+	}
+	&--2 {
+		color: $dark-gray-color;
+		font-size: $font-medium;
+	}
+	&--3 {
+		color: $gray-color;
+		font-weight: 300;
+	}
+}
+
+.about-photo {
+	border-radius: 50%;
+	height: 400px;
+	width: 400px;
+	@include shadow($size: "big");
+	@include for-large-screen {
+		margin: 0 $large-screen-padding;
+	}
+	@include for-medium-screen {
+		margin: 0 $medium-screen-padding;
+	}
+	@include for-small-screen {
+		margin: 0 $small-screen-padding;
+	}
+	@include for-tiny-screen {
+		margin: 0 $small-screen-padding;
+	}
+}
+
+.text {
+	font-size: $font-small;
+	color: $light-gray-color;
 }
