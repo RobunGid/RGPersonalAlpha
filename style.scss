@@ -109,8 +109,8 @@ body {
 		gap: 10px;
 		@include transition(background-color);
 		&:hover {
-			background-color: darken($primary-color, 5%);
-			color: darken($white-color, 5%)
+			background-color: darken($primary-color, 7%);
+			color: darken($white-color, 7%)
 		}
 	}
 
@@ -124,10 +124,11 @@ body {
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
-		@include transition($transitions: ("box-shadow", "color"));
+		@include transition($transitions: ("box-shadow", "color", "background"));
 		&:hover {
 			color: darken($primary-color, 5%);
 			@include shadow($size: "medium");
+			background: mix($white-color, $primary-color, $weight: 90%);
 		}
 	}
 
@@ -166,8 +167,12 @@ body {
 	@include x-padding;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	position: relative;
+	gap: 50px;
+	@include for-tiny-screen() {
+		justify-content: start;
+	}
 
 	&--logo-icon {
 		width: 25px;
@@ -252,6 +257,7 @@ body {
 		background: linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F0FFFC", endColorstr="#D7DBDB", GradientType=0);
 		display: flex;
+		justify-content: center;
 		@include for-medium-screen {
 			flex-wrap: wrap;
 			justify-content: center;
@@ -284,20 +290,24 @@ body {
 	width: 400px;
 	@include shadow($size: "big");
 	@include for-large-screen {
-		margin: 0 $large-screen-padding;
+		margin: 30px $large-screen-padding;
 	}
 	@include for-medium-screen {
-		margin: 0 $medium-screen-padding;
+		margin: 30px $medium-screen-padding;
 	}
 	@include for-small-screen {
-		margin: 0 $small-screen-padding;
+		margin: 30px $small-screen-padding;
 	}
 	@include for-tiny-screen {
-		margin: 0 $small-screen-padding;
+		margin: 30px $small-screen-padding;
 	}
 }
 
 .text {
 	font-size: $font-small;
 	color: $light-gray-color;
+	&__about {
+		width: 100%;
+		max-width: 700px;
+	}
 }
