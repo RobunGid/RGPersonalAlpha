@@ -79,6 +79,7 @@ $primary-color: rgba(129, 0, 235, 1);
 
 	&--navbar {
 		display: flex;
+		gap: 30px;
 	}
 
 	&--navbar-item {
@@ -87,14 +88,31 @@ $primary-color: rgba(129, 0, 235, 1);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
+		position: relative;
 		@include transition($transition: "filter");
 
-		&:hover {
+		&__active {
 			color: $primary-color;
-
 		}
-		&::after {
+		&__active::after {
+			content: '';
+			position: absolute;
+			bottom: -6px;
+			left: 0;
+			width: 100%;
+			height: 0.1em;
+			background-color: $primary-color;
+			opacity: 1;
+			transition: opacity 300ms, transform 300ms;
+			transform-origin: center;
+			transform: translate3d(0, 0.2em, 0);
+			transform: scale(1);
+		}
+		&:hover,
+		&:focus {
+			color: $primary-color;
+		}
+		&:not(&__active)::after {
 			content: '';
 			position: absolute;
 			bottom: -6px;
