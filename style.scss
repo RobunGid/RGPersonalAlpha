@@ -271,7 +271,11 @@ body {
 		color: $primary-color;
 		font-size: $font-big;
 		&__spec {
-			margin: 20px 0;
+			margin: 0 0;
+			display: flex;
+			& p {
+				margin: 10px 0;
+			}
 		}
 	}
 	&--2 {
@@ -310,4 +314,39 @@ body {
 		width: 100%;
 		max-width: 700px;
 	}
+}
+
+.heading--2__spec {
+  	font-family: monospace;
+	border-right: .15em solid orange; 
+	white-space: nowrap; 
+	letter-spacing: .15em; 
+	overflow: hidden; 
+	width: 0;
+	&1 {
+		animation: 
+			typing600 3s steps(24, end) forwards,
+			blink-caret .5s step-end infinite forwards;
+		margin-bottom: 4px;
+	}
+	&2 {
+		animation: 
+			typing400 3s steps(20, end) 0.3s forwards,
+			blink-caret .5s step-end infinite forwards;
+	}
+}
+
+@keyframes typing600 {
+  from { width: 0 }
+  to { width: 30ch }
+}
+
+@keyframes typing400 {
+  from { width: 0 }
+  to { width: calc(570 / 23 * 1ch)  }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: $primary-color }
 }
