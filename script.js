@@ -6,6 +6,12 @@ hover(".header--logo-container", (element) => {
     return () => animate(element, { scale: 1, rotate: 0 }, { type: "spring" })
 })
 
+hover(".stats--item", (element) => {
+    animate(element.querySelectorAll(".stats--icon, .stats--title"), { scale: 1.1, y: -10 }, { type: "spring" })
+
+    return () => animate(element.querySelectorAll(".stats--icon, .stats--title"), { scale: 1, y: 0 }, { type: "spring" })
+})
+
 hover(".header--navbar-item", (element) => {
 	animate(element, {scale: 1.05,}, { type: "spring"})
 	return () => animate(element, { scale: 1}, { type: "spring" })
