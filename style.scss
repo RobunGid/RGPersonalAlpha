@@ -2,11 +2,6 @@
 @use "sass:string";
 @use 'sass:color';
 
-$screen-tiny: 1050px;
-$screen-small: 1200px;
-$screen-medium: 1500px;
-$screen-large: 2000px;
-
 $primary-color: rgba(129, 0, 235, 1);
 $secondary-color: rgba(183, 83, 237, 1);
 $white-color: rgb(248, 248, 248);
@@ -17,47 +12,67 @@ $black-color: rgb(12, 12, 12);
 
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
-$font-small: 1.2rem;
+$font-tiny: 0.75rem;
+$font-small: 1rem;
 $font-medium: 2rem;
 $font-big: 3rem;
 
-$tiny-screen-padding: 3%;
-$small-screen-padding: 5%;
-$medium-screen-padding: 7%;
+$tiny-screen-padding: 5%;
+$mobile-screen-padding: 8%;
+$tablet-screen-padding: 7%;
+$laptop-screen-padding: 10%;
+$desktop-screen-padding: 10%;
 $large-screen-padding: 10%;
 
 body {
 	font-family: $primary-font;
 }
 
+$screen-tiny-min: 0px;
+$screen-mobile-min: 320px;
+$screen-tablet-min: 481px;
+$screen-laptop-min: 769px;
+$screen-desktop-min: 1025px;
+$screen-large-min: 1201px;
+
 @mixin for-tiny-screen {
-	@media (max-width: $screen-tiny) { @content; };
+	@media screen and (min-width: $screen-tiny-min) { @content; };
 }
-
-@mixin for-small-screen {
-	@media (max-width: $screen-small) { @content; };
+@mixin for-mobile-screen {
+	@media screen and (min-width: $screen-mobile-min) { @content; };
 }
-
-@mixin for-medium-screen {
-	@media (max-width: $screen-medium) { @content; };
+@mixin for-tablet-screen {
+	@media screen and (min-width: $screen-tablet-min) { @content; };
 }
-
+@mixin for-laptop-screen {
+	@media screen and (min-width: $screen-laptop-min) { @content; };
+}
+@mixin for-desktop-screen {
+	@media screen and (min-width: $screen-desktop-min) { @content; };
+}
 @mixin for-large-screen {
-	@media (min-width: $screen-medium) { @content; };
+	@media screen and (min-width: $screen-large-min) { @content; };
 }
+
 
 @mixin x-padding ($y-padding: 0px) {
+	@include for-tiny-screen {
+		padding: $y-padding $tiny-screen-padding;
+	}
+	@include for-mobile-screen {
+		padding: $y-padding $mobile-screen-padding;
+	}
+	@include for-tablet-screen {
+		padding: $y-padding $tablet-screen-padding;
+	}
+	@include for-laptop-screen {
+		padding: $y-padding $laptop-screen-padding;
+	}
+	@include for-desktop-screen {
+		padding: $y-padding $desktop-screen-padding;
+	}
 	@include for-large-screen {
 		padding: $y-padding $large-screen-padding;
-	}
-	@include for-medium-screen {
-		padding: $y-padding $medium-screen-padding;
-	}
-	@include for-small-screen {
-		padding: $y-padding $small-screen-padding;
-	}
-	@include for-tiny-screen {
-		padding: $y-padding $small-screen-padding;
 	}
 }
 
@@ -107,11 +122,11 @@ body {
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
-		@include transition(background-color);
 		&:hover {
-			background-color: darken($primary-color, 7%);
-			color: darken($white-color, 7%)
+			background-color: color.scale($primary-color, $lightness: -15%);
+			color: color.scale($white-color, $lightness: -15%)
 		}
+		@include transition((background-color, color));
 	}
 
 	&__secondary {
@@ -119,19 +134,31 @@ body {
 		padding: 5px 30px;
 		color: $black-color;
 		border-radius: 5px;
-		@include shadow();
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
-		@include transition($transitions: ("box-shadow", "color", "background"));
 		&:hover {
 			color: darken($primary-color, 5%);
 			@include shadow($size: "medium");
 			background: mix($white-color, $primary-color, $weight: 90%);
 		}
+		@include shadow();
+		@include transition($transitions: ("box-shadow", "color", "background"));
 	}
 
+	&__fixed {
+		width: 100%;
+		@include for-tiny-screen() {
+			width: 80%;
+		}
+		@include for-mobile-screen() {
+			width: 250px;
+		}
+		@include for-desktop-screen() {
+			width: 300px;
+		}
+	}
 	&--header-logo {
 		border-radius: 10px;
 		width: 40px;
@@ -163,17 +190,10 @@ body {
 
 .header {
 	height: 85px;
-	@include shadow($size: "small");
-	@include x-padding;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	position: relative;
-	gap: 50px;
-	@include for-tiny-screen() {
-		justify-content: start;
-	}
-
+	
 	&--logo-icon {
 		width: 25px;
 		height: 25px;
@@ -185,21 +205,20 @@ body {
 	}
 
 	&--navbar {
-		display: flex;
 		gap: 30px;
+		display: none;
+		@include for-desktop-screen() {
+			display: flex;
+		}
 	}
 
 	&--navbar-item {
-		width: 150px;
+		width: 100px;
 		height: 30px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		@include transition($transitions: ("filter"));
-		@include for-tiny-screen() {
-			display: none;
-		}
 
 		&__active {
 			color: $primary-color;
@@ -231,8 +250,6 @@ body {
 			height: 0.1em;
 			background-color: $primary-color;
 			opacity: 0;
-			transition: opacity 300ms, transform 300ms;
-			transform: scale(0);
 			transform-origin: center;
 		}
 		&:hover::after,
@@ -241,14 +258,32 @@ body {
 			transform: translate3d(0, 0.2em, 0);
 			transform: scale(1);
 		}
+		@include transition($transitions: ("filter"));
+		@include for-desktop-screen() {
+			width: 120px;
+		}
+		@include for-large-screen() {
+			width: 140px;
+		}
+	}
+	@include shadow($size: "small");
+	@include x-padding;
+	@include for-mobile-screen() {
+		justify-content: space-between;
+	}
+	@include for-desktop-screen() {
+		gap: 100px;	
 	}
 }
 
 .section {
-	@include x-padding($y-padding: 5rem);
 	&--button-container {
 		display: flex;
+		justify-content: center;
 		gap: 20px;
+		@include for-tiny-screen() {
+			flex-wrap: wrap;
+		}
 	}
 	&--about {
 		background: #f0fffc;
@@ -258,24 +293,28 @@ body {
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F0FFFC", endColorstr="#D7DBDB", GradientType=0);
 		display: flex;
 		justify-content: center;
-		@include for-medium-screen {
+		@include for-tiny-screen {
 			flex-wrap: wrap;
 			justify-content: center;
 		}
 	}
+	@include x-padding($y-padding: 5rem);
 }
 
 .heading {
 	margin: 0;
 	&--1 {
 		color: $primary-color;
-		font-size: $font-big;
+		font-size: $font-medium;
 		&__spec {
 			margin: 0 0;
 			display: flex;
 			& p {
 				margin: 10px 0;
 			}
+		}
+		@include for-mobile-screen() {
+			font-size: $font-big;
 		}
 	}
 	&--2 {
@@ -293,17 +332,19 @@ body {
 	height: 400px;
 	width: 400px;
 	@include shadow($size: "big");
-	@include for-large-screen {
-		margin: 30px $large-screen-padding;
-	}
-	@include for-medium-screen {
-		margin: 30px $medium-screen-padding;
-	}
-	@include for-small-screen {
-		margin: 30px $small-screen-padding;
-	}
 	@include for-tiny-screen {
-		margin: 30px $small-screen-padding;
+		margin: 30px 1px;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 16 / 12;
+	}
+	@include for-mobile-screen {
+		margin: 30px 20px;
+		width: 275px;
+		height: 275px;
+	}
+	@include for-desktop-screen {
+		margin: 30px $large-screen-padding;
 	}
 }
 
@@ -312,38 +353,47 @@ body {
 	color: $light-gray-color;
 	&__about {
 		width: 100%;
-		max-width: 700px;
+		max-width: 600px;
 	}
 }
 
 .heading--2__spec {
   	font-family: monospace;
-	border-right: .15em solid orange; 
+	border-right: .15em solid $primary-color; 
 	white-space: nowrap; 
 	letter-spacing: .15em; 
 	overflow: hidden; 
 	width: 0;
 	&1 {
 		animation: 
-			typing600 3s steps(24, end) forwards,
+			typing600 3s steps(23, end) forwards,
 			blink-caret .5s step-end infinite forwards;
 		margin-bottom: 4px;
 	}
 	&2 {
 		animation: 
-			typing400 3s steps(20, end) 0.3s forwards,
+			typing400 3s steps(19, end) 0.3s forwards,
 			blink-caret .5s step-end infinite forwards;
+	}
+	@include for-tiny-screen() {
+		font-size: $font-tiny
+	}
+	@include for-mobile-screen() {
+		font-size: $font-small
+	}
+	@include for-desktop-screen() {
+		font-size: $font-medium
 	}
 }
 
 @keyframes typing600 {
   from { width: 0 }
-  to { width: 30ch }
+  to { width: 28.7ch }
 }
 
 @keyframes typing400 {
   from { width: 0 }
-  to { width: calc(570 / 23 * 1ch)  }
+  to { width: calc(546 / 23 * 1ch)  }
 }
 
 @keyframes blink-caret {
