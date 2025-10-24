@@ -285,6 +285,11 @@ $screen-large-min: 1201px;
 			flex-wrap: wrap;
 		}
 	}
+	&--experience {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
 	&--about {
 		background: #f0fffc;
 		background: -webkit-linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
@@ -320,7 +325,42 @@ $screen-large-min: 1201px;
 	&--2 {
 		color: $dark-gray-color;
 		font-size: $font-medium;
-	}
+		&__primary {
+			color: $primary-color;
+		}
+		&__animated-600 {
+			font-family: monospace;
+			border-right: .15em solid $primary-color; 
+			white-space: nowrap; 
+			letter-spacing: .15em; 
+			overflow: hidden; 
+			width: 0;
+			animation: 
+				typing600 3s steps(23, end) forwards,
+				blink-caret .5s step-end infinite forwards;
+			margin-bottom: 4px;
+		}
+		&__animated-400 {
+			font-family: monospace;
+			border-right: .15em solid $primary-color; 
+			white-space: nowrap; 
+			letter-spacing: .15em; 
+			overflow: hidden; 
+			width: 0;
+			animation: 
+				typing400 3s steps(19, end) 0.3s forwards,
+				blink-caret .5s step-end infinite forwards;
+		}
+		@include for-tiny-screen() {
+			font-size: $font-tiny
+		}
+		@include for-mobile-screen() {
+			font-size: $font-small
+		}
+		@include for-desktop-screen() {
+			font-size: $font-medium
+		}
+		}
 	&--3 {
 		color: $gray-color;
 		font-weight: 300;
@@ -357,32 +397,45 @@ $screen-large-min: 1201px;
 	}
 }
 
-.heading--2__spec {
-  	font-family: monospace;
-	border-right: .15em solid $primary-color; 
-	white-space: nowrap; 
-	letter-spacing: .15em; 
-	overflow: hidden; 
-	width: 0;
-	&1 {
-		animation: 
-			typing600 3s steps(23, end) forwards,
-			blink-caret .5s step-end infinite forwards;
-		margin-bottom: 4px;
+.rule {
+	&--experience {
+		height: 4px;
+		background: linear-gradient(90deg, transparent, $primary-color, $secondary-color, transparent);
+		width: 50%;
+		border-radius: 3px;
+		border: none;
+		animation: rule-blinking 3s ease-in-out infinite;
 	}
-	&2 {
-		animation: 
-			typing400 3s steps(19, end) 0.3s forwards,
-			blink-caret .5s step-end infinite forwards;
+}
+
+.cards {
+	height: 300px;
+	width: 600px;
+	display: flex;
+	&--item {
+		display: flex;
+		width: 200px;
+		background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
+		background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+		background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+		border-radius: 10px;
+		transition: 0.4s ease-out;
+		position: relative;
+		left: 0px;
+		height: 280px;
+		&:hover {
+			transform: translateY(-20px);
+			transition: 0.4s ease-out;
+		}
+		&:hover ~ .cards--item {
+			position: relative;
+			left: 50px;
+			transition: 0.4s ease-out;
+		}
+		@include shadow();
 	}
-	@include for-tiny-screen() {
-		font-size: $font-tiny
-	}
-	@include for-mobile-screen() {
-		font-size: $font-small
-	}
-	@include for-desktop-screen() {
-		font-size: $font-medium
+	&--item:not(:first-child) {
+		margin-left: -50px;
 	}
 }
 
@@ -399,4 +452,9 @@ $screen-large-min: 1201px;
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: $primary-color }
+}
+
+@keyframes rule-blinking {
+	from, to { width: 50%; }
+	50% { width: 30% }
 }
