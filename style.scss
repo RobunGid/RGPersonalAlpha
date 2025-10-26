@@ -8,12 +8,14 @@ $white-color: rgb(248, 248, 248);
 $gray-color: rgb(82, 82, 82);
 $dark-gray-color: rgba(40, 40, 40, 1);
 $light-gray-color: rgb(97, 97, 97);
+$very-light-gray-color: rgb(210, 210, 210);
 $black-color: rgb(12, 12, 12);
-$light-aqua-color: rgba(99, 102, 241, 0.07);
+$light-aqua-color: rgb(219, 219, 237);
 
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
 $font-tiny: 0.75rem;
+$font-tiny-small: 0.9rem;
 $font-small: 1rem;
 $font-small-medium: 1.5rem;
 $font-medium: 2rem;
@@ -24,7 +26,7 @@ $mobile-screen-padding: 8%;
 $tablet-screen-padding: 4%;
 $laptop-screen-padding: 10%;
 $desktop-screen-padding: 10%;
-$large-screen-padding: 20%;
+$large-screen-padding: 15%;
 
 body {
 	font-family: $primary-font;
@@ -64,24 +66,24 @@ $screen-large-min: 1201px;
 }
 
 
-@mixin padding ($x-padding: 0px, $y-padding: 0px) {
+@mixin padding ($x-padding: 0px, $y-padding: 0px, $multiplier: 1) { 
 	@include for-tiny-screen {
-		padding: if($y-padding != 0px, $y-padding, $tiny-screen-padding) if($x-padding != 0px, $x-padding, $tiny-screen-padding);
+		padding: if($y-padding != 0px, $y-padding * $multiplier, $tiny-screen-padding * $multiplier) if($x-padding != 0px, $x-padding * $multiplier, $tiny-screen-padding * $multiplier);
 	}
 	@include for-mobile-screen {
-		padding: if($y-padding != 0px, $y-padding, $mobile-screen-padding) if($x-padding != 0px, $x-padding, $mobile-screen-padding);
+		padding: if($y-padding != 0px, $y-padding, $mobile-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $mobile-screen-padding * $multiplier);
 	}
 	@include for-tablet-screen {
-		padding: if($y-padding != 0px, $y-padding, $tablet-screen-padding) if($x-padding != 0px, $x-padding, $tablet-screen-padding);
+		padding: if($y-padding != 0px, $y-padding, $tablet-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $tablet-screen-padding * $multiplier);
 	}
 	@include for-laptop-screen {
-		padding: if($y-padding != 0px, $y-padding, $laptop-screen-padding) if($x-padding != 0px, $x-padding, $laptop-screen-padding);
+		padding: if($y-padding != 0px, $y-padding, $laptop-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $laptop-screen-padding * $multiplier);
 	}
 	@include for-desktop-screen {
-		padding: if($y-padding != 0px, $y-padding, $desktop-screen-padding) if($x-padding != 0px, $x-padding, $desktop-screen-padding);
+		padding: if($y-padding != 0px, $y-padding, $desktop-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $desktop-screen-padding * $multiplier);
 	}
 	@include for-large-screen {
-		padding: if($y-padding != 0px, $y-padding, $large-screen-padding) if($x-padding != 0px, $x-padding, $large-screen-padding);
+		padding: if($y-padding != 0px, $y-padding * $multiplier, $large-screen-padding * $multiplier) if($x-padding != 0px, $x-padding * $multiplier, $large-screen-padding * $multiplier);
 	}
 }
 
@@ -130,7 +132,7 @@ $screen-large-min: 1201px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 10px;
+		gap: 8px;
 		&:hover {
 			background-color: color.scale($primary-color, $lightness: -15%);
 			color: color.scale($white-color, $lightness: -15%)
@@ -146,7 +148,7 @@ $screen-large-min: 1201px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 10px;
+		gap: 8px;
 		&:hover {
 			color: darken($primary-color, 5%);
 			@include shadow($size: "medium");
@@ -155,7 +157,9 @@ $screen-large-min: 1201px;
 		@include shadow();
 		@include transition($transitions: ("box-shadow", "color", "background"));
 	}
-
+	&__full {
+		width: 100%;
+	}
 	&__fixed {
 		width: 100%;
 		@include for-tiny-screen() {
@@ -304,6 +308,10 @@ $screen-large-min: 1201px;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		@include padding($y-padding: 2rem);
+	}
+	&--about {
+		@include padding($y-padding: 2rem);
 	}
 	&--main {
 		margin-top: 85px;
@@ -318,8 +326,12 @@ $screen-large-min: 1201px;
 		@include for-desktop-screen {
 			flex-wrap: nowrap;
 		}
+		@include padding($y-padding: 2rem);
 	}
-	@include padding($y-padding: 5rem);
+	&--projects {
+		@include padding($y-padding: 2rem);
+	}
+	
 }
 
 .heading {
@@ -403,6 +415,10 @@ $screen-large-min: 1201px;
 	@include for-desktop-screen {
 		margin: 30px $large-screen-padding;
 	}
+	@include for-large-screen() {
+		width: 450px;
+		height: 450px;
+	}
 }
 .text {
 	font-size: $font-small;
@@ -414,13 +430,15 @@ $screen-large-min: 1201px;
 }
 
 .rule {
-	height: 4px;
-	background: linear-gradient(90deg, transparent, $primary-color, $secondary-color, transparent);
-	width: 50%;
-	border-radius: 3px;
-	border: none;
-	animation: rule-blinking 3s ease-in-out infinite;
-	margin-bottom: 30px;
+	&__primary {
+		height: 4px;
+		background: linear-gradient(90deg, transparent, $primary-color, $secondary-color, transparent);
+		width: 50%;
+		border-radius: 3px;
+		border: none;
+		animation: rule-blinking 3s ease-in-out infinite;
+		margin-bottom: 30px;
+	}
 }
 
 .about {
@@ -557,7 +575,6 @@ $screen-large-min: 1201px;
 .stats {
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
 
 	&--text {
 		text-align: center;
@@ -582,12 +599,12 @@ $screen-large-min: 1201px;
 		gap: 10px;
 		&__centered {
 			display: flex;
-			justify-content: center;
+			justify-content: start;
 			flex-direction: column;
 			align-items: center;
 		}
 		&__squared {
-			padding-top: 20px;
+			padding-top: 30px;
 			width: 240px;
 			height: 220px;
 			border-radius: 30px;
@@ -617,6 +634,108 @@ $screen-large-min: 1201px;
 		gap: 100px;
 	}
 }
+
+.projects {
+	display: flex;
+	gap: 30px;
+	flex-wrap: wrap;
+	justify-content: center;
+	&--rule {
+		background-color: $very-light-gray-color;
+		border: none;
+		height: 1px;
+		width: 100%;
+	}
+	&--text {
+		font-size: $font-tiny-small;
+		margin: 0;
+	}
+	&--title {
+		margin: 0;
+	}
+	&--content {
+		padding: 20px;
+		gap: 10px;
+		display: flex;
+		flex-direction: column;
+	}
+	&--image {
+		width: 100%;
+		border-radius: 15px 15px 0px 0px;
+		position: relative;
+		display: block;
+	}
+	&--image-container {
+		position: relative;
+		display: inline-block;
+		&::after {
+			content: "";
+			border-radius: 15px 15px 0px 0px;
+			top: 0;
+			box-sizing: border-box;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 1000;
+			box-shadow: 0px -53px 66px 0px rgba(0,0,0,0.4) inset;
+			-webkit-box-shadow: 0px -53px 66px 0px rgba(0,0,0,0.4) inset;
+			-moz-box-shadow: 0px -53px 66px 0px rgba(0,0,0,0.4) inset;
+		}
+	}
+	&--technologies {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px;
+	}
+	&--rule {
+		margin: 0;
+	}
+	&--date {
+		font-size: $font-tiny;
+		color: $gray-color;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		line-height: 1;
+	}
+	&--tech-item {
+		border-radius: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		white-space: nowrap;
+		cursor: default;
+		color: color.scale($primary-color, $lightness: -15%);
+		font-weight: 600;
+		font-size: $font-tiny-small;
+		padding: 5px 10px;
+		border: solid 1px transparent;
+		background-image: 
+			linear-gradient(white, white), 
+			radial-gradient(circle at top left, $primary-color, $secondary-color);
+		background-origin: border-box;
+		background-clip: padding-box, border-box;
+		&:hover {
+			border: solid 1px transparent;
+			background-image: 
+				linear-gradient($light-aqua-color, $light-aqua-color), 
+				radial-gradient(circle at top left, $primary-color, $secondary-color);
+			background-origin: border-box;
+			background-clip: padding-box, border-box;
+		}
+	}
+	&--item {
+		display: flex;
+		width: 400px;
+		position: relative;
+		flex-direction: column;
+		align-items: center;
+		border-radius: 15px;
+		@include shadow($size: medium);
+	}
+}
+
 
 @keyframes typing600 {
   from { width: 0 }
