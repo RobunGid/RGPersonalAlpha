@@ -9,11 +9,13 @@ $gray-color: rgb(82, 82, 82);
 $dark-gray-color: rgba(40, 40, 40, 1);
 $light-gray-color: rgb(97, 97, 97);
 $black-color: rgb(12, 12, 12);
+$light-aqua-color: rgba(99, 102, 241, 0.07);
 
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
 $font-tiny: 0.75rem;
 $font-small: 1rem;
+$font-small-medium: 1.5rem;
 $font-medium: 2rem;
 $font-big: 3rem;
 
@@ -35,6 +37,13 @@ $screen-laptop-min: 769px;
 $screen-desktop-min: 1025px;
 $screen-large-min: 1201px;
 
+@mixin gradient() {
+	background: $primary-color;
+	background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
+	background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+	background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+}
+
 @mixin for-tiny-screen {
 	@media screen and (min-width: $screen-tiny-min) { @content; };
 }
@@ -55,32 +64,32 @@ $screen-large-min: 1201px;
 }
 
 
-@mixin x-padding ($y-padding: 0px) {
+@mixin padding ($x-padding: 0px, $y-padding: 0px) {
 	@include for-tiny-screen {
-		padding: $y-padding $tiny-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $tiny-screen-padding) if($x-padding != 0px, $x-padding, $tiny-screen-padding);
 	}
 	@include for-mobile-screen {
-		padding: $y-padding $mobile-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $mobile-screen-padding) if($x-padding != 0px, $x-padding, $mobile-screen-padding);
 	}
 	@include for-tablet-screen {
-		padding: $y-padding $tablet-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $tablet-screen-padding) if($x-padding != 0px, $x-padding, $tablet-screen-padding);
 	}
 	@include for-laptop-screen {
-		padding: $y-padding $laptop-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $laptop-screen-padding) if($x-padding != 0px, $x-padding, $laptop-screen-padding);
 	}
 	@include for-desktop-screen {
-		padding: $y-padding $desktop-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $desktop-screen-padding) if($x-padding != 0px, $x-padding, $desktop-screen-padding);
 	}
 	@include for-large-screen {
-		padding: $y-padding $large-screen-padding;
+		padding: if($y-padding != 0px, $y-padding, $large-screen-padding) if($x-padding != 0px, $x-padding, $large-screen-padding);
 	}
 }
 
 @mixin shadow($size: "small") {
 	@if $size == "small" {
-		-webkit-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
-		-moz-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
-		box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.3);
+		-webkit-box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.25);
+		-moz-box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.25);
+		box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.25);
 	} @else if $size == "medium" {
 		-webkit-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
 		-moz-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.4);
@@ -166,10 +175,7 @@ $screen-large-min: 1201px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: $primary-color;
-		background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
-		background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
-		background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+		@include gradient;
 		filter: progid:DXImageTransform.Microsoft.gradient(
 			startColorstr="#8100EB",
 			endColorstr="#B753ED",
@@ -267,7 +273,7 @@ $screen-large-min: 1201px;
 		}
 	}
 	@include shadow($size: "small");
-	@include x-padding;
+	@include padding($y-padding: 0);
 	@include for-mobile-screen() {
 		justify-content: space-between;
 	}
@@ -303,7 +309,7 @@ $screen-large-min: 1201px;
 			justify-content: center;
 		}
 	}
-	@include x-padding($y-padding: 5rem);
+	@include padding($y-padding: 5rem);
 }
 
 .heading {
@@ -325,6 +331,7 @@ $screen-large-min: 1201px;
 	&--2 {
 		color: $dark-gray-color;
 		font-size: $font-medium;
+		text-align: center;
 		&__primary {
 			color: $primary-color;
 		}
@@ -352,12 +359,12 @@ $screen-large-min: 1201px;
 				blink-caret .5s step-end infinite forwards;
 		}
 		@include for-tiny-screen() {
-			font-size: $font-tiny
-		}
-		@include for-mobile-screen() {
 			font-size: $font-small
 		}
-		@include for-desktop-screen() {
+		@include for-mobile-screen() {
+			font-size: $font-medium
+		}
+		@include for-tablet-screen() {
 			font-size: $font-medium
 		}
 		}
@@ -405,44 +412,182 @@ $screen-large-min: 1201px;
 		border-radius: 3px;
 		border: none;
 		animation: rule-blinking 3s ease-in-out infinite;
+		margin-bottom: 30px;
+	}
+}
+
+.about {
+	display: grid;
+	gap: 100px;
+	grid-template-columns: 1fr;
+
+	&--item:first-child {
+		grid-column: 1 / -1;
+		@include for-large-screen() {
+			margin: 0 25% 0 25%;
+		}
+	}
+
+	&--title {
+		margin: 10px 0 0 0;
+		font-size: $font-medium;
+		color: $primary-color;
+		font-weight: 800;
+	}
+	&--subtitle {
+		margin: 10px 0 0 0;
+		font-size: $font-small-medium;
+		font-weight: 500;
+	}
+
+	&--item {
+		gap: 20px;
+		display: flex;
+		flex-direction: column;
+		padding: 30px;
+		border-radius: 10px;
+		position: relative;
+		&__centered {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+		&__squared {
+			width: 240px;
+			height: 240px;
+			border-radius: 30px;
+		}
+
+		@include transition((box-shadow));
+		@include shadow($size: small);
+		&:hover {
+			@include shadow($size: medium);
+		}
+		&::before {
+			background-color: $primary-color;
+			width: 0%;
+			height: 5px;
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 10px 10px 0px 0px;
+			@include transition((width));
+		}
+		&:hover::before {
+			width: 100%;
+		}
+	}
+	&--icon {
+		padding: 10px;
+		color: white;
+		border-radius: 15px;
+		width: 30px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@include shadow($size: medium);
+		@include gradient;
+	}
+	&--inline-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $white-color;
+		border-radius: 3px;
+		margin: 3px;
+		@include gradient;
+	}
+	&--list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 0;
+		@include for-large-screen() {
+			padding: 0px 0px 0px 30px;
+		}
+	}
+	&--list-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 3px 3px 3px 8px;
+		border-radius: 8px;
+		position: relative;
+		@include transition((background-color));
+		&::before {
+			content: "";
+			width: 5px;
+			height: 100%;
+			border-radius: 8px 0px 0px 8px;
+			background-color: $primary-color;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			@include transition((opacity));
+		}
+		&:hover::before {
+			opacity: 1
+		}
+		&:hover {
+			background-color: $light-aqua-color;
+		}
+	}
+	@include for-large-screen() {
+		grid-template-columns: 1fr 1fr;
 	}
 }
 
 .stats {
 	display: flex;
-	gap: 100px;
+	flex-direction: column;
+	gap: 30px;
 
-	&--subtitle {
+	&--text {
 		text-align: center;
 	}
 
 	&--title {
+		margin: 10px 0 0 0;
 		font-size: $font-medium;
 		color: $primary-color;
 		font-weight: 800;
+	}
+	&--subtitle {
+		margin: 10px 0 0 0;
+		font-size: $font-small-medium;
 	}
 
 	&--item {
 		cursor: default;
 		user-select: none;
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		align-items: center;
-		width: 240px;
-		height: 240px;
-		border-radius: 30px;
 		gap: 10px;
+		&__centered {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+		&__squared {
+			padding-top: 20px;
+			width: 240px;
+			height: 220px;
+			border-radius: 30px;
+		}
+
 		@include transition((box-shadow));
+		@include shadow($size: small);
 		&:hover {
-			@include shadow();
+			@include shadow($size: medium);
 		}
 	}
 	&--icon {
 		background: $primary-color;		
-		background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
-		background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
-		background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+
 		padding: 10px;
 		color: white;
 		border-radius: 15px;
@@ -452,6 +597,10 @@ $screen-large-min: 1201px;
 		justify-content: center;
 		align-items: center;
 		@include shadow($size: medium);
+	}
+	@include for-desktop-screen() {
+		flex-direction: row;
+		gap: 100px;
 	}
 }
 
