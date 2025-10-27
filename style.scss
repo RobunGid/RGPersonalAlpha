@@ -4,22 +4,27 @@
 
 $primary-color: rgba(129, 0, 235, 1);
 $secondary-color: rgba(183, 83, 237, 1);
-$white-color: rgb(248, 248, 248);
-$gray-color: rgb(82, 82, 82);
-$dark-gray-color: rgba(40, 40, 40, 1);
-$light-gray-color: rgb(97, 97, 97);
-$very-light-gray-color: rgb(210, 210, 210);
-$black-color: rgb(12, 12, 12);
-$light-aqua-color: rgb(219, 219, 237);
+$white-100: rgb(248, 248, 248);
+$gray-100: rgb(245, 245, 245);
+$gray-200: rgb(230, 230, 230);
+$gray-300: rgb(210, 210, 210);
+$gray-400: rgb(160, 160, 160);
+$gray-500: rgb(115, 115, 115);
+$gray-700: rgb(82, 82, 82);
+$gray-800: rgb(40, 40, 40);
+$gray-900: rgb(20, 20, 20);
+$black-300: rgb(12, 12, 12);
+$aqua-500: rgb(219, 219, 237);
 
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
-$font-tiny: 0.75rem;
-$font-tiny-small: 0.9rem;
-$font-small: 1rem;
-$font-small-medium: 1.5rem;
-$font-medium: 2rem;
-$font-big: 3rem;
+$font-75: 0.75rem;
+$font-90: 0.9rem;
+$font-100: 1rem;
+$font-112: 1.125rem;
+$font-150: 1.5rem;
+$font-200: 2rem;
+$font-300: 3rem;
 
 $tiny-screen-padding: 5%;
 $mobile-screen-padding: 8%;
@@ -127,7 +132,7 @@ $screen-large-min: 1201px;
 	&__primary {
 		background-color: $primary-color;
 		padding: 5px 30px;
-		color: $white-color;
+		color: $white-100;
 		border-radius: 5px;
 		display: flex;
 		justify-content: center;
@@ -135,15 +140,15 @@ $screen-large-min: 1201px;
 		gap: 8px;
 		&:hover {
 			background-color: color.scale($primary-color, $lightness: -15%);
-			color: color.scale($white-color, $lightness: -15%)
+			color: color.scale($white-100, $lightness: -15%)
 		}
 		@include transition((background-color, color));
 	}
 
 	&__secondary {
-		background-color: $white-color;
+		background-color: $white-100;
 		padding: 5px 30px;
-		color: $black-color;
+		color: $black-300;
 		border-radius: 5px;
 		display: flex;
 		justify-content: center;
@@ -152,7 +157,7 @@ $screen-large-min: 1201px;
 		&:hover {
 			color: darken($primary-color, 5%);
 			@include shadow($size: "medium");
-			background: mix($white-color, $primary-color, $weight: 90%);
+			background: mix($white-100, $primary-color, $weight: 90%);
 		}
 		@include shadow();
 		@include transition($transitions: ("box-shadow", "color", "background"));
@@ -171,6 +176,14 @@ $screen-large-min: 1201px;
 		@include for-desktop-screen() {
 			width: 300px;
 		}
+	}
+	&__centered {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&--down-arrow {
+		padding: 5px;
 	}
 	&--header-logo {
 		border-radius: 10px;
@@ -205,7 +218,7 @@ $screen-large-min: 1201px;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: $white-color;
+	background-color: $white-100;
 	z-index: 1000;
 	@include padding($y-padding: 0);
 	box-sizing: border-box;
@@ -332,6 +345,12 @@ $screen-large-min: 1201px;
 	&--projects {
 		@include padding($y-padding: 2rem);
 	}
+	&--skills {
+		@include padding($y-padding: 2rem, $multiplier: 0.7);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	
 }
 
@@ -339,7 +358,7 @@ $screen-large-min: 1201px;
 	margin: 0;
 	&--1 {
 		color: $primary-color;
-		font-size: $font-medium;
+		font-size: $font-200;
 		&__spec {
 			margin: 0 0;
 			display: flex;
@@ -348,18 +367,26 @@ $screen-large-min: 1201px;
 			}
 		}
 		@include for-mobile-screen() {
-			font-size: $font-big;
+			font-size: $font-300;
 		}
 	}
 	&--2 {
-		color: $dark-gray-color;
-		font-size: $font-small;
-		text-align: center;
+		color: $gray-800;
+		font-size: $font-100;
+		display: flex;
+		align-items: center;
+		&__bold {
+			font-weight: 700;
+		}
+		&__centered {
+			text-align: center;
+			justify-content: center;
+		}
 		&__primary {
 			color: $primary-color;
 		}
 		&__animated-600 {
-			font-size: $font-tiny;
+			font-size: $font-75;
 			font-family: monospace;
 			border-right: .15em solid $primary-color; 
 			white-space: nowrap; 
@@ -372,7 +399,7 @@ $screen-large-min: 1201px;
 			margin-bottom: 4px;
 		}
 		&__animated-400 {
-			font-size: $font-tiny;
+			font-size: $font-75;
 			font-family: monospace;
 			border-right: .15em solid $primary-color; 
 			white-space: nowrap; 
@@ -385,21 +412,32 @@ $screen-large-min: 1201px;
 		}
 		
 		@include for-mobile-screen() {
-			font-size: $font-small;
+			font-size: $font-100;
 		}
 		@include for-tablet-screen() {
-			font-size: $font-small-medium;
+			font-size: $font-150;
 		}
 		@include for-laptop-screen() {
-			font-size: $font-medium;
+			font-size: $font-200;
 		}
 		@include for-desktop-screen() {
-			font-size: $font-medium;
+			font-size: $font-200;
 		}
 	}
 	&--3 {
-		color: $gray-color;
+		color: $gray-500;
 		font-weight: 300;
+		&__centered {
+			text-align: center;
+		}
+	}
+	&--4 {
+		color: $gray-700;
+		font-size: $font-112;
+		font-weight: 300;
+		&__centered {
+			text-align: center;
+		}
 	}
 }
 .main-photo {
@@ -422,8 +460,8 @@ $screen-large-min: 1201px;
 	}
 }
 .text {
-	font-size: $font-small;
-	color: $light-gray-color;
+	font-size: $font-100;
+	color: $gray-700;
 	&--main {
 		width: 100%;
 		max-width: 600px;
@@ -431,6 +469,7 @@ $screen-large-min: 1201px;
 }
 
 .rule {
+	margin: 0px;
 	&__primary {
 		height: 4px;
 		background: linear-gradient(90deg, transparent, $primary-color, $secondary-color, transparent);
@@ -438,7 +477,14 @@ $screen-large-min: 1201px;
 		border-radius: 3px;
 		border: none;
 		animation: rule-blinking 3s ease-in-out infinite;
-		margin-bottom: 30px;
+		margin: 10px 0px;
+	}
+	&__secondary {
+		height: 4px;
+		background: $gray-300;
+		width: 100%;
+		border-radius: 3px;
+		border: none;
 	}
 }
 
@@ -456,13 +502,13 @@ $screen-large-min: 1201px;
 
 	&--title {
 		margin: 10px 0 0 0;
-		font-size: $font-medium;
+		font-size: $font-200;
 		color: $primary-color;
 		font-weight: 800;
 	}
 	&--subtitle {
 		margin: 10px 0 0 0;
-		font-size: $font-small-medium;
+		font-size: $font-150;
 		font-weight: 500;
 	}
 
@@ -524,7 +570,7 @@ $screen-large-min: 1201px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: $white-color;
+		color: $white-100;
 		border-radius: 3px;
 		@include gradient;
 		@include for-tablet-screen() {
@@ -565,7 +611,7 @@ $screen-large-min: 1201px;
 			opacity: 1
 		}
 		&:hover {
-			background-color: $light-aqua-color;
+			background-color: $aqua-500;
 		}
 	}
 	@include for-large-screen() {
@@ -583,12 +629,12 @@ $screen-large-min: 1201px;
 
 	&--title {
 		margin: 10px 0 0 0;
-		font-size: $font-medium;
+		font-size: $font-200;
 		color: $primary-color;
 		font-weight: 800;
 	}
 	&--subtitle {
-		font-size: $font-small-medium;
+		font-size: $font-150;
 		@include for-desktop-screen() {
 			margin: 10px 0 0 0;
 		}
@@ -642,13 +688,13 @@ $screen-large-min: 1201px;
 	flex-wrap: wrap;
 	justify-content: center;
 	&--rule {
-		background-color: $very-light-gray-color;
+		background-color: $gray-800;
 		border: none;
 		height: 1px;
 		width: 100%;
 	}
 	&--text {
-		font-size: $font-tiny-small;
+		font-size: $font-90;
 		margin: 0;
 	}
 	&--title {
@@ -713,8 +759,8 @@ $screen-large-min: 1201px;
 		margin: 0;
 	}
 	&--date {
-		font-size: $font-tiny;
-		color: $gray-color;
+		font-size: $font-75;
+		color: $gray-500;
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -729,7 +775,7 @@ $screen-large-min: 1201px;
 		cursor: default;
 		color: color.scale($primary-color, $lightness: -15%);
 		font-weight: 600;
-		font-size: $font-tiny-small;
+		font-size: $font-90;
 		padding: 5px 10px;
 		border: solid 1px transparent;
 		background-image: 
@@ -740,7 +786,7 @@ $screen-large-min: 1201px;
 		&:hover {
 			border: solid 1px transparent;
 			background-image: 
-				linear-gradient($light-aqua-color, $light-aqua-color), 
+				linear-gradient($aqua-500, $aqua-500), 
 				radial-gradient(circle at top left, $primary-color, $secondary-color);
 			background-origin: border-box;
 			background-clip: padding-box, border-box;
@@ -757,6 +803,43 @@ $screen-large-min: 1201px;
 	}
 }
 
+.skills {
+	&--section {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 0px 10px;
+		margin: 20px 0px;
+		align-items: center;
+	}
+	&--skills-count {
+		font-size: $font-75;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid $gray-300;
+		border-radius: 5px;
+		padding: 3px 10px;
+		color: $gray-500;
+		height: 25px;
+		background: $gray-200;
+	}
+	&--area {
+		display: flex;
+		gap: 10px;
+	}
+	&--area-icon {
+		color: $primary-color;
+	}
+	&--count-arrow-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&--down-arrow {
+		color: $gray-500
+	}
+}
 
 @keyframes typing600 {
   from { width: 0 }
