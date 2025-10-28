@@ -10,15 +10,24 @@ $gray-200: rgb(230, 230, 230);
 $gray-300: rgb(210, 210, 210);
 $gray-400: rgb(160, 160, 160);
 $gray-500: rgb(115, 115, 115);
+$gray-600: rgb(100, 100, 100);
 $gray-700: rgb(82, 82, 82);
 $gray-800: rgb(40, 40, 40);
 $gray-900: rgb(20, 20, 20);
 $black-300: rgb(12, 12, 12);
 $aqua-500: rgb(219, 219, 237);
 
+$blue-500: rgb(96, 128, 178);
+$green-500: rgb(129, 172, 110);
+$orange-500: rgb(184, 137, 92);
+$blue-300: rgb(74, 110, 168);
+$green-300: rgb(113, 157, 83);
+$orange-300: rgb(184, 112, 68);
+
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
 $font-75: 0.75rem;
+$font-85: 0.85rem;
 $font-90: 0.9rem;
 $font-100: 1rem;
 $font-112: 1.125rem;
@@ -44,12 +53,27 @@ $screen-laptop-min: 769px;
 $screen-desktop-min: 1025px;
 $screen-large-min: 1201px;
 
-@mixin gradient() {
-	background: $primary-color;
-	background: -webkit-linear-gradient(127deg, $primary-color 0%, $secondary-color 100%);
-	background: -moz-linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
-	background: linear-gradient(127deg,$primary-color 0%, $secondary-color 100%);
+@mixin gradient($color: primary) {
+  $start: $primary-color;
+  $end: $secondary-color;
+
+  @if $color == blue {
+    $start: lighten($blue-500, 10%);
+    $end: darken($blue-500, 10%);
+  } @else if $color == green {
+    $start: lighten($green-500, 10%);
+    $end: darken($green-500, 10%);
+  } @else if $color == orange {
+    $start: lighten($orange-500, 10%);
+    $end: darken($orange-500, 10%);
+  }
+
+  background: $start;
+  background: -webkit-linear-gradient(127deg, $start 0%, $end 100%);
+  background: -moz-linear-gradient(127deg, $start 0%, $end 100%);
+  background: linear-gradient(127deg, $start 0%, $end 100%);
 }
+
 
 @mixin for-tiny-screen {
 	@media screen and (min-width: $screen-tiny-min) { @content; };
@@ -347,7 +371,7 @@ $screen-large-min: 1201px;
 		@include padding($y-padding: 2rem);
 	}
 	&--skills {
-		@include padding($y-padding: 2rem, $multiplier: 0.7);
+		@include padding($y-padding: 2rem);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -806,6 +830,11 @@ $screen-large-min: 1201px;
 }
 
 .skills {
+	padding: 20px;
+	gap: 20px;
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 	&--section {
 		width: 100%;
 		display: flex;
@@ -841,6 +870,118 @@ $screen-large-min: 1201px;
 	&--down-arrow {
 		color: $gray-500
 	}
+	&--item {
+		border-radius: 15px;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		min-width: 200px;
+		&__advanced {
+			border: $green-500 2px solid;
+		}
+		&__middle {
+			border: $orange-500 2px solid;
+		}
+		&__beginner {
+			border: $blue-500 2px solid;
+		}
+	}
+	&--item-experience {
+		font-size: $font-75;
+		color: $gray-600;
+	}
+	&--progress-container {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		justify-content: center;
+	}
+	&--progress-bar-container {
+		background: $gray-200;
+		justify-content: flex-start;
+		border-radius: 100px;
+		align-items: center;
+		display: flex;
+		height: 6px;
+		width: 100%;
+	}
+	&--progress-bar {
+		width: 100%;
+	}
+	&--progress-bar-value {
+		box-shadow: 0 10px 40px -10px #000000;
+		border-radius: 100px;
+		position: relative;
+		overflow: hidden;
+		height: 6px;
+		width: 100%;
+		&__advanced {
+			animation: load75 3s normal forwards;
+			@include gradient($color: green);
+		}
+		&__middle {
+			animation: load50 3s normal forwards;
+			@include gradient($color: orange);
+		}
+		&__beginner {
+			animation: load25 3s normal forwards;
+			@include gradient($color: blue);
+		}
+	}
+	&--progress-bar-value::after {
+		content: '';
+		top: 0;
+		transform:translateX(100%);
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		animation: slide 1s infinite;			
+		background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(128,186,232,0) 99%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.8)), color-stop(99%,rgba(128,186,232,0)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* IE10+ */
+		background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
+	}
+	&--progress-title {
+		font-size: $font-75;
+		color: $gray-800;
+	}
+	&--item-level {
+		font-size: $font-85;
+		color: $gray-800;
+		padding-top: 4px;
+		font-weight: 500;
+	}
+	&--item-icon {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		border-radius: 10px;
+		@include shadow($size: medium);
+		&__advanced {
+			@include gradient($color: green);
+		}
+		&__middle {
+			@include gradient($color: orange);
+		}
+		&__beginner {
+			@include gradient($color: blue);
+		}
+	}
+	&--item-title {
+		font-weight: 500;
+	}
+	&--icon-title-container {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 }
 
 @keyframes typing600 {
@@ -861,4 +1002,17 @@ $screen-large-min: 1201px;
 @keyframes rule-blinking {
 	from, to { width: 50%; }
 	50% { width: 30% }
+}
+
+@for $percent from 1 through 3 {
+	@keyframes load#{$percent*25} {
+		0% { width: 0; }
+		100% { width: #{$percent*25} + "%"; }
+	}
+}
+
+
+@keyframes slide {
+	0% {transform:translateX(-100%);}
+	100% {transform:translateX(100%);}
 }
