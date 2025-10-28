@@ -339,6 +339,7 @@ $screen-large-min: 1201px;
 		justify-content: center;
 		@include for-desktop-screen {
 			flex-wrap: nowrap;
+			justify-content: space-between;
 		}
 		@include padding($y-padding: 2rem);
 	}
@@ -440,31 +441,31 @@ $screen-large-min: 1201px;
 		}
 	}
 }
-.main-photo {
-	border-radius: 50%;
-	width: 200px;
-	height: 200px;
-	aspect-ratio: 16 / 12;
-	@include shadow($size: "big");
-	@include for-mobile-screen {
-		margin: 30px 20px;
-		width: 275px;
-		height: 275px;
-	}
-	@include for-desktop-screen {
-		margin: 30px $large-screen-padding;
-	}
-	@include for-large-screen() {
-		width: 450px;
-		height: 450px;
-	}
+
+.main {
+	&--img {
+		border-radius: 50%;
+		width: 200px;
+		height: 200px;
+		margin: 30px;
+		@include shadow($size: "big");
+		@include for-mobile-screen {
+			width: 275px;
+			height: 275px;
+		}
+		@include for-large-screen() {
+			width: 350px;
+			height: 350px;
+		}
+	} 
 }
+
 .text {
 	font-size: $font-100;
 	color: $gray-700;
-	&--main {
-		width: 100%;
-		max-width: 600px;
+	&__main {
+		min-width: 300px;
+		max-width: 500px;
 	}
 }
 
@@ -477,7 +478,7 @@ $screen-large-min: 1201px;
 		border-radius: 3px;
 		border: none;
 		animation: rule-blinking 3s ease-in-out infinite;
-		margin: 10px 0px;
+		margin: 10px auto;
 	}
 	&__secondary {
 		height: 4px;
@@ -622,6 +623,7 @@ $screen-large-min: 1201px;
 .stats {
 	display: flex;
 	flex-direction: column;
+	gap: 20px;
 
 	&--text {
 		text-align: center;
