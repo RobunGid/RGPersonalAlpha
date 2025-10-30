@@ -88,3 +88,12 @@ inView(headingNameElement, () => {
     )
   })
 }, { once: true });
+
+const skillsDropdownButtons = document.querySelectorAll('.skills--btn-dropdown')
+
+skillsDropdownButtons.forEach(button => {
+	button.addEventListener("click", event => {
+		event.currentTarget.classList.toggle('skills--btn-dropdown__flipped')
+		event.currentTarget.parentNode.parentNode.nextElementSibling.nextElementSibling.classList.toggle("skills__hidden")
+	})
+})
