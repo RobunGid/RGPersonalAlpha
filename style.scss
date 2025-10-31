@@ -923,14 +923,30 @@ $default-transition-delay: 0ms;
 		flex-direction: column;
 		gap: 3px;
 		min-width: 200px;
+		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
 		&__advanced {
 			border: $green-500 2px solid;
+			&:hover {
+				box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
+			}
 		}
 		&__middle {
 			border: $orange-500 2px solid;
+			&:hover {
+				box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
+			}
 		}
 		&__beginner {
 			border: $blue-500 2px solid;
+			&:hover {
+				box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
+			}
 		}
 	}
 	&--item-experience {

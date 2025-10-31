@@ -97,3 +97,12 @@ skillsDropdownButtons.forEach(button => {
 		event.currentTarget.parentNode.parentNode.nextElementSibling.nextElementSibling.classList.toggle("skills__hidden")
 	})
 })
+
+hover(".skills--item", (element) => {
+	animate(element, {scale: 1.03, y: -5});
+	animate(element.querySelector('.skills--item-icon'), {scale: 1.1, rotate: 10, y: -5});
+	return () => {
+		animate(element, { scale: 1, y: 0});
+		animate(element.querySelector('.skills--item-icon'), {scale: 1, rotate: 0, y: 0});
+	};
+});
