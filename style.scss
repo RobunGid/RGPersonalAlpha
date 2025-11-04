@@ -510,13 +510,20 @@ $default-transition-delay: 0ms;
 			width: 275px;
 			height: 275px;
 		}
+		@include for-tablet-screen() {
+			height: 400px;
+			width: 400px;
+		}
+		@include for-desktop-screen() {
+			width: 220px;
+			height: 220px;
+		}
 		@include for-large-screen() {
 			width: 350px;
 			height: 350px;
 		}
 	} 
 }
-
 .text {
 	font-size: $font-100;
 	color: $gray-700;
@@ -887,10 +894,20 @@ $default-transition-delay: 0ms;
 	&--section {
 		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		justify-content: start;
 		padding: 0px 10px;
-		margin: 20px 0px;
+		padding: 0px 0px 30px 0px;
 		align-items: center;
+		gap: 10px;
+		flex-direction: column;
+		justify-content: center;
+		@include for-tablet-screen() {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		&__first {
+			padding-top: 10px;
+		}
 	}
 	&--skills-count {
 		font-size: $font-75;
