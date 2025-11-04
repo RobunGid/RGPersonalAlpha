@@ -34,6 +34,7 @@ $font-85: 0.85rem;
 $font-90: 0.9rem;
 $font-100: 1rem;
 $font-112: 1.125rem;
+$font-125: 1.25rem;
 $font-150: 1.5rem;
 $font-200: 2rem;
 $font-300: 3rem;
@@ -61,17 +62,17 @@ $screen-large-min: 1201px;
   $end: $secondary-color;
 
   @if $color == blue {
-    $start:  color.adjust($blue-500, $lightness: 10%);
-    $end: color.adjust($blue-500, $lightness: -10%);
+    $start:  color.adjust($blue-500, $lightness: 5%);
+    $end: color.adjust($blue-500, $lightness: -5%);
   } @else if $color == green {
-    $start: color.adjust($green-500, $lightness: 10%);
-    $end: color.adjust($green-500, $lightness: -10%);
+    $start: color.adjust($green-500, $lightness: 5%);
+    $end: color.adjust($green-500, $lightness: -5%);
   } @else if $color == orange {
-    $start: color.adjust($orange-500, $lightness: 10%);
-    $end: color.adjust($orange-500, $lightness: -10%);
+    $start: color.adjust($orange-500, $lightness: 5%);
+    $end: color.adjust($orange-500, $lightness: -5%);
   } @else if $color == teal {
-    $start: color.adjust($teal-500, $lightness: 10%);
-    $end: color.adjust($teal-500, $lightness: -10%);
+    $start: color.adjust($teal-500, $lightness: 5%);
+    $end: color.adjust($teal-500, $lightness: -5%);
   }
 	& {
 		background: $start;
@@ -404,6 +405,12 @@ $default-transition-delay: 0ms;
 		@include padding($y-padding: 2rem);
 	}
 	&--skills-stats {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		@include padding($y-padding: 2rem);
+	}
+	&--pluses {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
@@ -1220,6 +1227,64 @@ $default-transition-delay: 0ms;
 		}
 		&__beginner {
 			@include gradient($color: blue);
+		}
+	}
+}
+
+.pluses {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 40px;
+	&--title {
+		font-size: $font-125;
+		font-weight: 600;
+	}
+	&--text {
+		color: $gray-700;
+	}
+	&--icon {
+		padding: 5px;
+		width: 60px;
+		height: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 15px;
+		color: $white-100;
+		&__green {
+			@include gradient($color: green);
+		}
+		&__orange {
+			@include gradient($color: orange);
+		}
+		&__blue {
+			@include gradient($color: blue);
+		}
+		&__teal {
+			@include gradient($color: teal);
+		}
+		@include shadow();
+	}
+	&--item {
+		display: flex;
+		flex-direction: column;
+		border-radius: 20px;
+		width: 250px;
+		padding: 40px;
+		gap: 10px;
+		position: relative;
+		overflow: hidden;
+		@include shadow();
+		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
+		&::before {
+			content: "";
+			width: 100%;
+			height: 5px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: $primary-color;
 		}
 	}
 }
