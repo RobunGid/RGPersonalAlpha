@@ -123,3 +123,10 @@ hover(".skills-stats--item", (element) => {
 		animate(element.querySelector('.skills-stats--item-icon'), {scale: 1, rotate: 0, y: 0});
 	};
 });
+
+hover(".pluses--item", (element) => {
+	animate(element, {scale: 1.04,}, { type: "spring"});
+	return () => {
+		animate(element, { scale: 1}, { type: "spring" });
+	};
+});
