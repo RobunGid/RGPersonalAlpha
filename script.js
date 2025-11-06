@@ -131,8 +131,8 @@ hover(".pluses--item", (element) => {
 	};
 });
 
-hover(".contact--link", (element) => {
-    animate(element, { scale: 1.05, y: -2, rotate: 2, x: 3 }, { type: "spring" });
+hover(".contact--list-item__animated", (element) => {
+    animate(element, { scale: 1.03, y: -1, rotate: 0.5, x: 1.5 }, { type: "spring" });
 
     return () => animate(element, { scale: 1, y: 0, rotate: 0, x: 0 }, { type: "spring" });
 });

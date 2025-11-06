@@ -1334,12 +1334,23 @@ $default-transition-delay: 0ms;
 	&--list {
 		display: flex;
 		flex-direction: column;
+		font-size: $font-100;
 	}
 	&--list-item {
 		text-wrap: nowrap;
 		display: flex;
 		align-items: center;
 		gap: 5px;
+		&__animated {
+			&:hover {
+				color: $gray-800;
+				& .contact--link {
+					color: $gray-800;
+				}
+			}
+			@include transition((color));
+		}
+
 	}
 	&--form {
 		width: 500px;
@@ -1352,6 +1363,7 @@ $default-transition-delay: 0ms;
 		flex-direction: column;
 		width: 100%;
 		gap: 5px;
+		font-size: $font-100;
 	}
 	&--btn-container { 
 		display: flex;
@@ -1363,10 +1375,34 @@ $default-transition-delay: 0ms;
 		text-decoration: none;
 	}
 	&--input {
-		border: 1px solid $gray-300;
+		border: 2px solid $gray-200;
 		border-radius: 10px;
-		padding: 5px 10px;
+		padding: 10px 10px;
 		outline: none;
+		box-sizing: border-box;
+		&:hover {
+			border: 2px solid color.mix($primary-color, $gray-200, $weight: 30%);
+		}
+		&:focus {
+			border: 2px solid $primary-color;
+		}
+		@include transition((border));
+	}
+	&--textarea {
+		border: 2px solid $gray-300;
+		border-radius: 10px;
+		padding: 5px 20px;
+		outline: none;	
+		resize: none;
+		padding: 10px 10px;
+		box-sizing: border-box;
+		&:hover {
+			border: 2px solid color.mix($primary-color, $gray-200, $weight: 30%);
+		}
+		&:focus {
+			border: 2px solid $primary-color;
+		}
+		@include transition((border));
 	}
 	&--label-text {
 		display: flex;
