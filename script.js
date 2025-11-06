@@ -136,3 +136,9 @@ hover(".contact--list-item__animated", (element) => {
 
     return () => animate(element, { scale: 1, y: 0, rotate: 0, x: 0 }, { type: "spring" });
 });
+
+hover(".circle-link", (element) => {
+    animate(element, { scale: 1.05, y: -5, rotate: 0.5 }, { type: "spring" });
+
+    return () => animate(element, { scale: 1, y: 0, rotate: 0 }, { type: "spring" });
+});
