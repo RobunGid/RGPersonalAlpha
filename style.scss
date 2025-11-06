@@ -183,12 +183,13 @@ $default-transition-delay: 0ms;
 
 	&__primary {
 		background-color: $primary-color;
-		padding: 5px 30px;
+		padding: 10px 30px;
 		color: $white-100;
 		border-radius: 5px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		line-height: 1;
 		gap: 8px;
 		&:hover {
 			background-color: color.scale($primary-color, $lightness: -15%);
@@ -411,6 +412,12 @@ $default-transition-delay: 0ms;
 		@include padding($y-padding: 2rem);
 	}
 	&--pluses {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		@include padding($y-padding: 2rem);
+	}
+	&--contact {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
@@ -1320,6 +1327,51 @@ $default-transition-delay: 0ms;
 			position: absolute;
 			z-index: -1;
 		}
+	}
+}
+
+.contact {
+	&--list {
+		display: flex;
+		flex-direction: column;
+	}
+	&--list-item {
+		text-wrap: nowrap;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+	&--form {
+		width: 500px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	&--label {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 5px;
+	}
+	&--btn-container { 
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+	}
+	&--link {
+		color: $black-300;
+		text-decoration: none;
+	}
+	&--input {
+		border: 1px solid $gray-300;
+		border-radius: 10px;
+		padding: 5px 10px;
+		outline: none;
+	}
+	&--label-text {
+		display: flex;
+		align-items: center;
+		gap: 5px;
 	}
 }
 

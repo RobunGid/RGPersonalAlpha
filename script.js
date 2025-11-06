@@ -130,3 +130,9 @@ hover(".pluses--item", (element) => {
 		animate(element, { scale: 1}, { type: "spring" });
 	};
 });
+
+hover(".contact--link", (element) => {
+    animate(element, { scale: 1.05, y: -2, rotate: 2, x: 3 }, { type: "spring" });
+
+    return () => animate(element, { scale: 1, y: 0, rotate: 0, x: 0 }, { type: "spring" });
+});
