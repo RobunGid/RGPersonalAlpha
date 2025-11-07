@@ -142,3 +142,44 @@ hover(".circle-link", (element) => {
 
     return () => animate(element, { scale: 1, y: 0, rotate: 0 }, { type: "spring" });
 });
+
+const sections = ["main", "about", "projects", "skills", "contact"]
+
+const navbarItems = {
+  main: document.querySelector("#navbar-item--main"),
+  about: document.querySelector("#navbar-item--about"),
+  projects: document.querySelector("#navbar-item--projects"),
+  skills: document.querySelector("#navbar-item--skills"),
+  contact: document.querySelector("#navbar-item--contact"),
+}
+
+const rootElements = {
+  main: document.querySelector("#root-elem--main"),
+  about: document.querySelector("#root-elem--about"),
+  projects: document.querySelector("#root-elem--projects"),
+  skills: document.querySelector("#root-elem--skills"),
+  contact: document.querySelector("#root-elem--contact"),
+}
+
+const changeActiveNavbarItem = (navbarItem) => {
+	const currentActiveNavbarItems = document.querySelectorAll(".header--navbar-item__active");
+	currentActiveNavbarItems.forEach(item => item.classList.remove("header--navbar-item__active"));
+	navbarItem.classList.add("header--navbar-item__active");
+};
+
+const defaultIntersectionOptions = {
+	rootMargin: "80% 0px 0px 0px",
+  	scrollMargin: "0px",
+  	threshold: 0,
+}
+
+for (const section of sections) {
+	const callback = (entries, observer) => {
+		const activeSection = entries[0].target.id.split("--")[1];
+		const activeNavbarItem = navbarItems[activeSection];
+		changeActiveNavbarItem(activeNavbarItem);
+	}
+
+	const observer = new IntersectionObserver(callback, defaultIntersectionOptions);
+	observer.observe(rootElements[section])
+}
