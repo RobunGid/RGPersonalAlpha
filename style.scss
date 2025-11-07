@@ -332,6 +332,7 @@ $default-transition-delay: 0ms;
 		justify-content: center;
 		position: relative;
 		z-index: 1000;
+		cursor: pointer;
 
 		&__active {
 			color: $primary-color;

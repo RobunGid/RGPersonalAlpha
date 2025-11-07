@@ -1,5 +1,8 @@
 import { animate, hover, inView } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
 
+const VIEWPORT_OFFSET = 250;
+const SCROLL_OFFSET = 30;
+
 animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
   duration: 3,
   easing: 'spring',
@@ -167,19 +170,27 @@ const changeActiveNavbarItem = (navbarItem) => {
 	navbarItem.classList.add("header--navbar-item__active");
 };
 
-const defaultIntersectionOptions = {
-	rootMargin: "80% 0px 0px 0px",
-  	scrollMargin: "0px",
-  	threshold: 0,
-}
-
-for (const section of sections) {
-	const callback = (entries, observer) => {
-		const activeSection = entries[0].target.id.split("--")[1];
-		const activeNavbarItem = navbarItems[activeSection];
-		changeActiveNavbarItem(activeNavbarItem);
+document.addEventListener("scroll", event => {
+	for (const section of sections) {
+		const rect = rootElements[section].getBoundingClientRect();
+		const currentNavbarItem = navbarItems[section];
+		if (rect.top <= VIEWPORT_OFFSET && rect.top >= -1 * VIEWPORT_OFFSET) {
+			changeActiveNavbarItem(currentNavbarItem);
+		}
 	}
+})
 
-	const observer = new IntersectionObserver(callback, defaultIntersectionOptions);
-	observer.observe(rootElements[section])
-}
+const headerNavbarElement = document.querySelector(".header--navbar");
+
+headerNavbarElement.addEventListener('click', (event) => {
+	const targetElem = event.target.closest(".header--navbar-item");
+	if (!targetElem) return;
+
+	const targetSection = targetElem.id.split('--')[1];
+	const targetRootElement = rootElements[targetSection];
+	const bodyRect = document.body.getBoundingClientRect();
+	const targetRect = targetRootElement.getBoundingClientRect();
+	const targetNavbarItem = navbarItems[targetSection]
+
+	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
+})
