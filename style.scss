@@ -39,6 +39,7 @@ $font-100: 1rem;
 $font-112: 1.125rem;
 $font-125: 1.25rem;
 $font-150: 1.5rem;
+$font-175: 1.75rem;
 $font-200: 2rem;
 $font-300: 3rem;
 
@@ -46,7 +47,7 @@ $tiny-screen-padding: 5%;
 $mobile-screen-padding: 8%;
 $tablet-screen-padding: 4%;
 $laptop-screen-padding: 10%;
-$desktop-screen-padding: 10%;
+$desktop-screen-padding: 8%;
 $large-screen-padding: 12%;
 
 body {
@@ -159,8 +160,8 @@ $default-transition-delay: 0ms;
 	
 	$all: ();
 	@if ($durations and $delays) {
-		@for $i from 1 through length($durations) {
-			$all: list.append($all, string.unquote(nth($transitions, $i) + " " + nth($durations, $i) + " " + nth($delays, $i)), comma);
+		@for $i from 1 through list.length($durations) {
+			$all: list.append($all, string.unquote(list.nth($transitions, $i) + " " + list.nth($durations, $i) + " " + list.nth($delays, $i)), comma);
 		}
 	} @else {
 		@each $transition in $transitions {
@@ -255,7 +256,7 @@ $default-transition-delay: 0ms;
 			width: 80%;
 		}
 		@include for-mobile-screen() {
-			width: 250px;
+			width: 100%;
 		}
 		@include for-desktop-screen() {
 			width: 300px;
@@ -393,11 +394,14 @@ $default-transition-delay: 0ms;
 .section {
 	&--button-container {
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		justify-content: start;
 		gap: 20px;
 		flex-direction: column;
+		flex-wrap: wrap;
 		@include for-desktop-screen() {
+			align-items: start;
+		}
+		@include for-laptop-screen() {
 			flex-wrap: nowrap;
 			justify-content: start;
 			flex-direction: row;
@@ -425,11 +429,12 @@ $default-transition-delay: 0ms;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		@include padding($y-padding: 4rem);
 		@include for-desktop-screen {
 			flex-wrap: nowrap;
 			justify-content: space-between;
+			@include padding($y-padding: 10rem);
 		}
-		@include padding($y-padding: 2rem);
 	}
 	&--projects {
 		@include padding($y-padding: 2rem);
@@ -519,7 +524,7 @@ $default-transition-delay: 0ms;
 		}
 		
 		@include for-mobile-screen() {
-			font-size: $font-125;
+			font-size: $font-100;
 		}
 		@include for-tablet-screen() {
 			font-size: $font-150;
@@ -528,7 +533,7 @@ $default-transition-delay: 0ms;
 			font-size: $font-200;
 		}
 		@include for-desktop-screen() {
-			font-size: $font-200;
+			font-size: $font-175;
 		}
 	}
 	&--3 {
@@ -547,7 +552,6 @@ $default-transition-delay: 0ms;
 		}
 	}
 }
-
 .main {
 	&--img {
 		border-radius: 50%;
@@ -556,20 +560,26 @@ $default-transition-delay: 0ms;
 		margin: 30px;
 		@include shadow($size: "big");
 		@include for-mobile-screen {
-			width: 275px;
-			height: 275px;
+			width: 250px;
+			height: 250px;
 		}
 		@include for-tablet-screen() {
 			height: 400px;
 			width: 400px;
 		}
-		@include for-desktop-screen() {
-			width: 220px;
-			height: 220px;
+		@include for-laptop-screen() {
+			width: 300px;
+			height: 300px;
 		}
-		@include for-large-screen() {
+		@include for-desktop-screen() {
 			width: 350px;
 			height: 350px;
+		}
+		@include for-large-screen() {
+			width: 400px;
+			height: 400px;
+			margin: 10px;
+			margin-right: 150px;
 		}
 	} 
 	&--links-btns-container {
@@ -582,6 +592,20 @@ $default-transition-delay: 0ms;
 			justify-content: start;
 		}
 	}
+	&--cli-text-container {
+		width: 100%;
+		@include for-laptop-screen() {
+			width: 45ch;
+		}
+	}
+	&--text-container {
+		width: 100%;
+		display: flex;
+		margin: 10px 0px;
+		@include for-desktop-screen() {
+			display: block;
+		}
+	}
 }
 
 .text {
@@ -589,7 +613,7 @@ $default-transition-delay: 0ms;
 	color: $gray-700;
 	&__main {
 		min-width: 300px;
-		max-width: 500px;
+		max-width: 400px;
 	}
 }
 
@@ -815,6 +839,7 @@ $default-transition-delay: 0ms;
 	gap: 30px;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin: 30px 0px;
 	&--rule {
 		background-color: $gray-800;
 		border: none;
@@ -1014,31 +1039,31 @@ $default-transition-delay: 0ms;
 		flex-direction: column;
 		gap: 3px;
 		min-width: 200px;
-		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
 		&__advanced {
 			border: $green-500 2px solid;
 			&:hover {
-				box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
-				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
-				-moz-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80%);
+				box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($green-500, $alpha: 80);
 			}
 		}
 		&__middle {
 			border: $orange-500 2px solid;
 			&:hover {
-				box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
-				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
-				-moz-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80%);
+				box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($orange-500, $alpha: 80);
 			}
 		}
 		&__beginner {
 			border: $blue-500 2px solid;
 			&:hover {
-				box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
-				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
-				-moz-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80%);
+				box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80);
+				-webkit-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80);
+				-moz-box-shadow: 0px 5px 30px 0px color.adjust($blue-500, $alpha: 80);
 			}
 		}
+		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
 	}
 	&--item-experience {
 		font-size: $font-75;
@@ -1494,6 +1519,7 @@ $default-transition-delay: 0ms;
 		display: flex;
 		justify-content: center;
 		gap: 20px;
+		flex-wrap: wrap;
 	}
 	&--hr {
 		width: 100%;
