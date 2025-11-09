@@ -29,6 +29,8 @@ $green-300: rgb(30, 202, 142);
 $orange-300: rgb(255, 170, 90);
 $teal-500: rgb(40, 180, 190);
 $teal-300: rgb(90, 210, 220);
+$red-300: rgb(255, 120, 120);
+$red-500: rgb(220, 40, 40);
 
 $primary-font: "Overpass", "Segoe UI", "sans-serif";
 
@@ -1489,11 +1491,21 @@ $default-transition-delay: 0ms;
 		resize: none;
 		padding: 10px 10px;
 		box-sizing: border-box;
+		width: 100%;
 		&:hover {
 			border: 2px solid color.mix($primary-color, $gray-200, $weight: 30%);
 		}
 		&:focus {
 			border: 2px solid $primary-color;
+		}
+		&__error {
+			border: 2px solid color.mix($gray-300, $red-300, $weight: 50%);
+			&:hover {
+				border: 2px solid $red-300;
+			}
+			&:focus {
+				border: 2px solid $red-500;
+			}
 		}
 		@include transition((border));
 	}
@@ -1501,6 +1513,31 @@ $default-transition-delay: 0ms;
 		display: flex;
 		align-items: center;
 		gap: 5px;
+	}
+	&--error-message {
+		color: $red-300;
+		margin: 3px 0px;
+		transform-origin: top;
+		@include transition((transform));
+		&__hidden {
+			transform: scale(1, 0);
+		}
+	}
+	&--input-length {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		margin: 0px 20px 12px 0px;
+		font-size: $font-75;
+		color: $gray-500;
+		&__blink {
+			animation: error-blink 1000ms;
+			animation-iteration-count: 1;
+		}
+		@include transition((color, transform));
+	}
+	&--textarea-container {
+		position: relative;
 	}
 }
 
@@ -1534,6 +1571,17 @@ $default-transition-delay: 0ms;
 @keyframes typing600 {
   from { width: 0 }
   to { width: 28.7ch }
+}
+
+@keyframes error-blink {
+  from, to { 
+	color: $gray-500;
+	scale: 1.0;
+   }
+  50% { 
+	scale: 1.1;
+	color: $red-300;
+   }
 }
 
 @keyframes typing400 {

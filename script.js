@@ -2,6 +2,8 @@ import { animate, hover, inView } from "https://cdn.jsdelivr.net/npm/motion@late
 
 const VIEWPORT_OFFSET = 250;
 const SCROLL_OFFSET = 30;
+const MESSAGE_INPUT_MIN_LENGTH = 8;
+const MESSAGE_INPUT_MAX_LENGTH = 1280;
 
 animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
   duration: 3,
@@ -193,4 +195,37 @@ headerNavbarElement.addEventListener('click', (event) => {
 	const targetNavbarItem = navbarItems[targetSection]
 
 	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
+})
+
+const messageInputElement = document.querySelector("#message-input");
+const messageInputErrorElement = document.querySelector("#message-input-error");
+let isMessageInputTouched = false;
+let lastMessageInputValue;
+const messageInputLengthElement = document.querySelector(".contact--input-length")
+const messageInputCurrentLengthElement = document.querySelector("#message-input-current-length");
+const messageInputMaxLengthElement = document.querySelector("#message-input-max-length");
+
+messageInputMaxLengthElement.textContent = MESSAGE_INPUT_MAX_LENGTH;
+
+messageInputElement.addEventListener('blur', () => {
+	isMessageInputTouched = true;
+})
+
+messageInputElement.addEventListener("input", (event) => {
+	if (messageInputElement.value.length <= MESSAGE_INPUT_MIN_LENGTH && isMessageInputTouched) {
+		messageInputErrorElement.classList.remove("contact--error-message__hidden");
+		messageInputElement.classList.add("contact--textarea__error");
+	} else {
+		messageInputErrorElement.classList.add("contact--error-message__hidden");
+		messageInputElement.classList.remove("contact--textarea__error");
+	}
+	console.log(messageInputElement.value.length)
+	if (messageInputElement.value.length > MESSAGE_INPUT_MAX_LENGTH) {
+		messageInputElement.value = lastMessageInputValue;
+		messageInputLengthElement.classList.remove("contact--input-length__blink");
+		void messageInputLengthElement.offsetWidth;
+		messageInputLengthElement.classList.add("contact--input-length__blink");
+	}
+	messageInputCurrentLengthElement.textContent = messageInputElement.value.length;
+	lastMessageInputValue = messageInputElement.value;
 })
