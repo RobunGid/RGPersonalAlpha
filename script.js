@@ -219,7 +219,6 @@ messageInputElement.addEventListener("input", (event) => {
 		messageInputErrorElement.classList.add("contact--error-message__hidden");
 		messageInputElement.classList.remove("contact--textarea__error");
 	}
-	console.log(messageInputElement.value.length)
 	if (messageInputElement.value.length > MESSAGE_INPUT_MAX_LENGTH) {
 		messageInputElement.value = lastMessageInputValue;
 		messageInputLengthElement.classList.remove("contact--input-length__blink");
