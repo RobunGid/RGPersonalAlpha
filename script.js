@@ -247,3 +247,26 @@ btnContactElement.addEventListener('click', () => {
 
 	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
 })
+
+const btnToContactElements = document.querySelectorAll(".pluses--item-btn");
+
+btnToContactElements.forEach(btn => {
+	btn.addEventListener('click', () => {
+		const targetRootElement = rootElements["contact"];
+		const bodyRect = document.body.getBoundingClientRect();
+		const targetRect = targetRootElement.getBoundingClientRect();
+
+		window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
+	})
+})
+
+const viewSiteBtnElements = document.querySelectorAll("[data-open-link]");
+
+viewSiteBtnElements.forEach(btn => {
+	btn.addEventListener('click', (event) => {
+		window.open(
+			event.target.dataset.openLink,
+			'_blank'
+		)
+	})
+})
