@@ -192,7 +192,6 @@ headerNavbarElement.addEventListener('click', (event) => {
 	const targetRootElement = rootElements[targetSection];
 	const bodyRect = document.body.getBoundingClientRect();
 	const targetRect = targetRootElement.getBoundingClientRect();
-	const targetNavbarItem = navbarItems[targetSection]
 
 	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
 })
@@ -227,4 +226,24 @@ messageInputElement.addEventListener("input", (event) => {
 	}
 	messageInputCurrentLengthElement.textContent = messageInputElement.value.length;
 	lastMessageInputValue = messageInputElement.value;
+})
+
+const btnViewProjectsElement = document.querySelector("#btn-view-projects");
+
+btnViewProjectsElement.addEventListener('click', () => {
+	const targetRootElement = rootElements["projects"];
+	const bodyRect = document.body.getBoundingClientRect();
+	const targetRect = targetRootElement.getBoundingClientRect();
+
+	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
+})
+
+const btnContactElement = document.querySelector("#btn-contact");
+
+btnContactElement.addEventListener('click', () => {
+	const targetRootElement = rootElements["contact"];
+	const bodyRect = document.body.getBoundingClientRect();
+	const targetRect = targetRootElement.getBoundingClientRect();
+
+	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
 })
