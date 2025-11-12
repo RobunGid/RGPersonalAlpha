@@ -857,7 +857,7 @@ body {
 }
 .heading--2 {
   color: rgb(40, 40, 40);
-  font-size: 1rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
 }
@@ -894,7 +894,7 @@ body {
 }
 @media screen and (min-width: 320px) {
   .heading--2 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
 }
 @media screen and (min-width: 481px) {
