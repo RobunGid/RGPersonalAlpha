@@ -1605,6 +1605,7 @@ body {
   padding: 30px;
   gap: 40px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .skills-stats--item {
   display: flex;

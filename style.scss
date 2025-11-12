@@ -1171,6 +1171,7 @@ $default-transition-delay: 0ms;
 	padding: 30px;
 	gap: 40px;
 	flex-wrap: wrap;
+	justify-content: center;
 
 	&--item {
 		display: flex;
