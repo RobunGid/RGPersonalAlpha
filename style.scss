@@ -526,7 +526,7 @@ $default-transition-delay: 0ms;
 		}
 		
 		@include for-mobile-screen() {
-			font-size: $font-100;
+			font-size: $font-150;
 		}
 		@include for-tablet-screen() {
 			font-size: $font-150;
