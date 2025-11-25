@@ -5,6 +5,8 @@ const SCROLL_OFFSET = 30;
 const MESSAGE_INPUT_MIN_LENGTH = 8;
 const MESSAGE_INPUT_MAX_LENGTH = 1280;
 
+const HTTP_BACKEND = "http://127.0.0.1:5000/send"
+
 animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
   duration: 3,
   easing: 'spring',
@@ -268,5 +270,24 @@ viewSiteBtnElements.forEach(btn => {
 			event.target.dataset.openLink,
 			'_blank'
 		)
+	})
+})
+
+const form = document.querySelector(".contact--form");
+
+form.addEventListener("submit", async (event) => {
+	event.preventDefault();
+	if (!event.target.checkValidity()) {
+		return;
+	}
+	const formData = new FormData(form);
+	const message = {}
+	formData.forEach((value, key) => message[key] = value);
+	fetch(HTTP_BACKEND, {
+		method: "POST",
+		body: JSON.stringify(message),
+		  headers: {
+   			 "Content-type": "application/json; charset=UTF-8"
+  			}
 	})
 })

@@ -145,3 +145,7 @@ sftp-config.json
 # Visual Studio Code - https://code.visualstudio.com/
 .settings/
 .vscode/
+
+*.db
+.env
+.venv

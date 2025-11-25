@@ -1,0 +1,41 @@
+import requests
+from datetime import datetime
+
+from flask import Flask, request, jsonify
+from pydantic_core import ValidationError
+from flask_cors import CORS
+
+from schemas import MessageSchema
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route("/send", methods=["POST"])
+def send_message():
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No JSON received"}), 400
+    try:
+        message_data = MessageSchema.validate(data)
+    except ValidationError:
+        return jsonify({"error": "Wrong body format"}), 400
+    time = datetime.now().strftime("%B %d, %Y %H:%M:%S")
+    
+    message_text = f"""
+**📩 Новая заявка c RGPersonalAlpha**
+
+**Время:** {time}
+**Имя:** {message_data.name}  
+**Контакт:** {message_data.contact}  
+**Тема:** {message_data.theme}  
+
+**Сообщение:**  
+{message_data.message}
+"""
+        
+    requests.post("http://localhost:8080/send", json={"text": message_text})
+
+    return jsonify({"status": "message sent"}), 200
+
+if __name__ == "__main__":
+    app.run(port=5000)
