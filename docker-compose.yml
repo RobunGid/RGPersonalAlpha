@@ -30,6 +30,7 @@ services:
       dockerfile: telegram_bot/Dockerfile
     ports:
       - "5000:5000"
+      - "8080:8080"
     env_file:
       - ./messagebot/.env
   certbot:
