@@ -7,10 +7,10 @@ from flask_cors import CORS
 
 from schemas import MessageSchema
 from bot_config import config
-import JSON
+import json
 
 app = Flask(__name__)
-CORS(app, resources={r"*": {"origins": JSON.loads(config["ORIGINS"])}})
+CORS(app, resources={r"*": {"origins": json.loads(config["ORIGINS"])}})
 
 @app.route("/send", methods=["POST"])
 def send_message():
