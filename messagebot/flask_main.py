@@ -6,9 +6,10 @@ from pydantic_core import ValidationError
 from flask_cors import CORS
 
 from schemas import MessageSchema
+from bot_config import config
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"*": {"origins": config["ORIGINS"]}})
 
 @app.route("/send", methods=["POST"])
 def send_message():
@@ -16,7 +17,7 @@ def send_message():
     if not data:
         return jsonify({"error": "No JSON received"}), 400
     try:
-        message_data = MessageSchema.validate(data)
+        message_data = MessageSchema.validate_model(data)
     except ValidationError:
         return jsonify({"error": "Wrong body format"}), 400
     time = datetime.now().strftime("%B %d, %Y %H:%M:%S")

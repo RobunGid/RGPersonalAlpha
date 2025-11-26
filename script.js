@@ -273,14 +273,28 @@ viewSiteBtnElements.forEach(btn => {
 	})
 })
 
-const form = document.querySelector(".contact--form");
+const modalSuccessElement = document.querySelector("#modal-success");
+const modalSuccessContentElement = modalSuccessElement.querySelector(".modal--content");
 
-form.addEventListener("submit", async (event) => {
+const modalSuccessCloseBtnElement = document.querySelector("#modal-success .modal--close");
+modalSuccessCloseBtnElement.addEventListener("click", () => {
+	modalSuccessElement.classList.add("modal__hidden");
+})
+
+document.addEventListener("click", (event) => {
+	if (event.target != modalSuccessContentElement && !event.target.closest(".modal--content")) {
+		modalSuccessElement.classList.add("modal__hidden");
+	}
+})
+
+const contactFormElement = document.querySelector(".contact--form");
+
+contactFormElement.addEventListener("submit", async (event) => {
 	event.preventDefault();
 	if (!event.target.checkValidity()) {
 		return;
 	}
-	const formData = new FormData(form);
+	const formData = new FormData(contactFormElement);
 	const message = {}
 	formData.forEach((value, key) => message[key] = value);
 	fetch(HTTP_BACKEND, {
@@ -289,5 +303,8 @@ form.addEventListener("submit", async (event) => {
 		  headers: {
    			 "Content-type": "application/json; charset=UTF-8"
   			}
-	})
-})
+	});
+	modalSuccessElement.classList.remove("modal__hidden");
+	contactFormElement.reset();
+});
+
