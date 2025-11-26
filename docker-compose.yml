@@ -12,6 +12,7 @@ services:
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
       - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
   flask_app:
     network_mode: "host"
     build:
