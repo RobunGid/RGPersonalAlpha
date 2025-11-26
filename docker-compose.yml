@@ -1,0 +1,30 @@
+services:
+  frontend:
+    network_mode: "host"
+    build:
+      context: ./frontend
+      network: host
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+  flask_app:
+    network_mode: "host"
+    build:
+      context: .
+      network: host
+      dockerfile: flask_app/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./messagebot/.env
+  telegram_bot:
+    network_mode: "host"
+    build:
+      context: .
+      network: host
+      dockerfile: telegram_bot/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./messagebot/.env
