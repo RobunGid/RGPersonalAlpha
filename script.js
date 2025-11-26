@@ -5,7 +5,7 @@ const SCROLL_OFFSET = 30;
 const MESSAGE_INPUT_MIN_LENGTH = 8;
 const MESSAGE_INPUT_MAX_LENGTH = 1280;
 
-const HTTP_BACKEND = "http://127.0.0.1:5000/send"
+const HTTP_BACKEND = "http://95.182.99.233:5000/send"
 
 animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
   duration: 3,
