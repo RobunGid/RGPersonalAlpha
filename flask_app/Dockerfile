@@ -5,4 +5,4 @@ COPY messagebot/requirements.txt .
 RUN python3 -m pip install -r requirements.txt --no-cache-dir
 COPY messagebot/ .
 ENV APP_ENV=prod
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "flask_main:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "--timeout", "80", "flask_main:app"]
