@@ -5,7 +5,7 @@ const SCROLL_OFFSET = 30;
 const MESSAGE_INPUT_MIN_LENGTH = 8;
 const MESSAGE_INPUT_MAX_LENGTH = 1280;
 
-const HTTP_BACKEND = "http://95.182.99.233:5000/send"
+const BACKEND_URL = "https://robgid.space:5000/send"
 
 animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
   duration: 3,
@@ -297,7 +297,7 @@ contactFormElement.addEventListener("submit", async (event) => {
 	const formData = new FormData(contactFormElement);
 	const message = {}
 	formData.forEach((value, key) => message[key] = value);
-	fetch(HTTP_BACKEND, {
+	fetch(BACKEND_URL, {
 		method: "POST",
 		body: JSON.stringify(message),
 		  headers: {
