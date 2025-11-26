@@ -36,7 +36,7 @@ def send_message():
 {message_data.message}
 """
         
-    requests.post("http://localhost:8080/send", json={"text": message_text})
+    requests.post("http://telegram_bot:8080/send", json={"text": message_text})
 
     return jsonify({"status": "message sent"}), 200
 
