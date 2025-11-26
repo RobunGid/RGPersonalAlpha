@@ -2,8 +2,9 @@ services:
   frontend:
     network_mode: "host"
     build:
-      context: ./frontend
+      context: .
       network: host
+      dockerfile: frontend/Dockerfile
     ports:
       - "80:80"
     environment:
