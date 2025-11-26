@@ -17,20 +17,20 @@ def send_message():
     if not data:
         return jsonify({"error": "No JSON received"}), 400
     try:
-        message_data = MessageSchema.validate_model(data)
+        message_data = MessageSchema.model_validate(data)
     except ValidationError:
         return jsonify({"error": "Wrong body format"}), 400
     time = datetime.now().strftime("%B %d, %Y %H:%M:%S")
     
     message_text = f"""
-**📩 Новая заявка c RGPersonalAlpha**
+📩 Новая заявка c RGPersonalAlpha
 
-**Время:** {time}
-**Имя:** {message_data.name}  
-**Контакт:** {message_data.contact}  
-**Тема:** {message_data.theme}  
+Время: {time}
+Имя: {message_data.name}  
+Контакт: {message_data.contact}  
+Тема: {message_data.theme}  
 
-**Сообщение:**  
+Сообщение:  
 {message_data.message}
 """
         
