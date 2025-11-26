@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from flask import Flask, request, jsonify
 from pydantic_core import ValidationError
@@ -21,7 +22,7 @@ def send_message():
         message_data = MessageSchema.model_validate(data)
     except ValidationError:
         return jsonify({"error": "Wrong body format"}), 400
-    time = datetime.now().strftime("%B %d, %Y %H:%M:%S")
+    time = datetime.now(ZoneInfo(config["ZONE_INFO"])).strftime("%B %d, %Y %H:%M:%S")
     
     message_text = f"""
 📩 Новая заявка c RGPersonalAlpha
