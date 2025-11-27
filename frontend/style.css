@@ -287,6 +287,12 @@ body {
   background-color: rgb(109.65, 0, 199.75);
   color: rgb(210.8, 210.8, 210.8);
 }
+.btn__primary:hover {
+  box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.4);
+}
+.btn__primary {
+  box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.25);
+}
 .btn__primary {
   transition: background-color 300ms 0ms, color 300ms 0ms;
 }
@@ -299,6 +305,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  line-height: 1;
 }
 .btn__secondary:hover {
   color: rgb(115.0021276596, 0, 209.5);
@@ -632,7 +639,6 @@ body {
 @media screen and (min-width: 1025px) {
   .section--main {
     flex-wrap: nowrap;
-    justify-content: space-between;
   }
 }
 @media screen and (min-width: 1025px) and (min-width: 0px) {

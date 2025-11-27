@@ -227,8 +227,10 @@ $default-transition-delay: 0ms;
 		gap: 8px;
 		&:hover {
 			background-color: color.scale($primary-color, $lightness: -15%);
-			color: color.scale($white-100, $lightness: -15%)
+			color: color.scale($white-100, $lightness: -15%);
+			@include shadow($size: "medium");
 		}
+		@include shadow();
 		@include transition((background-color, color));
 	}
 
@@ -241,6 +243,7 @@ $default-transition-delay: 0ms;
 		justify-content: center;
 		align-items: center;
 		gap: 8px;
+		line-height: 1;
 		&:hover {
 			color: color.adjust($primary-color, $lightness: -5%);
 			background: color.mix($white-100, $primary-color, $weight: 90%);
@@ -434,7 +437,6 @@ $default-transition-delay: 0ms;
 		@include padding($y-padding: 4rem);
 		@include for-desktop-screen {
 			flex-wrap: nowrap;
-			justify-content: space-between;
 			@include padding($y-padding: 10rem);
 		}
 	}
