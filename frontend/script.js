@@ -75,13 +75,13 @@ hover(".btn--down-arrow", (element) => {
 	};
 });
 
-animate('.about-photo', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
-  duration: 3,
-  easing: 'spring',
-  stiffness: 300,
-  damping: 10,
-  repeat: Infinity
-});
+// animate('.about-photo', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
+//   duration: 3,
+//   easing: 'spring',
+//   stiffness: 300,
+//   damping: 10,
+//   repeat: Infinity
+// });
 
 const headingNameElement = document.querySelector("#heading-name");
 const text = headingNameElement.dataset.text;
