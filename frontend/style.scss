@@ -3,19 +3,25 @@
 @use 'sass:color';
 @use 'sass:list';
 
+@font-face {
+  font-family: 'Overpass';
+  src: url('./static/fonts/Overpass-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; 
+  font-style: normal;
+  font-display: swap;
+}
+
+
 $primary-color: rgba(129, 0, 235, 1);
 $secondary-color: rgba(183, 83, 237, 1);
 $white-100: rgb(248, 248, 248);
 $gray-100: rgb(245, 245, 245);
 $gray-200: rgb(230, 230, 230);
 $gray-300: rgb(210, 210, 210);
-$gray-400: rgb(160, 160, 160);
-$gray-500: rgb(115, 115, 115);
 $gray-600: rgb(100, 100, 100);
 $gray-700: rgb(82, 82, 82);
 $gray-750: rgb(61, 61, 61);
 $gray-800: rgb(40, 40, 40);
-$gray-900: rgb(20, 20, 20);
 $black-300: rgb(12, 12, 12);
 $aqua-500: rgb(219, 219, 237);
 $slate-300: rgb(18, 24, 42);
@@ -541,7 +547,7 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--3 {
-		color: $gray-500;
+		color: $gray-600;
 		font-weight: 300;
 		&__centered {
 			text-align: center;
@@ -918,7 +924,7 @@ $default-transition-delay: 0ms;
 	}
 	&--date {
 		font-size: $font-75;
-		color: $gray-500;
+		color: $gray-600;
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -1010,7 +1016,7 @@ $default-transition-delay: 0ms;
 		border: 1px solid $gray-300;
 		border-radius: 5px;
 		padding: 3px 10px;
-		color: $gray-500;
+		color: $gray-600;
 		height: 25px;
 		background: $gray-200;
 		width: 100%;
@@ -1035,7 +1041,7 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--down-arrow {
-		color: $gray-500
+		color: $gray-600
 	}
 	&--item {
 		border-radius: 15px;
@@ -1533,7 +1539,7 @@ $default-transition-delay: 0ms;
 		right: 0;
 		margin: 0px 20px 12px 0px;
 		font-size: $font-75;
-		color: $gray-500;
+		color: $gray-600;
 		&__blink {
 			animation: error-blink 1000ms;
 			animation-iteration-count: 1;
@@ -1614,6 +1620,16 @@ $default-transition-delay: 0ms;
 	@include transition((opacity, transform));
 }
 
+.sr-only {
+	clip: rect(0 0 0 0); 
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap; 
+	width: 1px;
+}
+
 @keyframes typing600 {
   from { width: 0 }
   to { width: 28.7ch }
@@ -1621,7 +1637,7 @@ $default-transition-delay: 0ms;
 
 @keyframes error-blink {
   from, to { 
-	color: $gray-500;
+	color: $gray-600;
 	scale: 1.0;
    }
   50% { 
