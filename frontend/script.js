@@ -16,7 +16,7 @@ const BACKEND_URL = "https://robgid.space/api/send"
 // });
 
 hover(".header--logo-container", (element) => {
-    animate(element, { scale: 1.1, rotate: 7 }, { type: "spring" });
+    animate(element, { scale: 1.1, rotate: 4 }, { type: "spring" });
 
     return () => animate(element, { scale: 1, rotate: 0 }, { type: "spring" });
 });
@@ -308,3 +308,15 @@ contactFormElement.addEventListener("submit", async (event) => {
 	contactFormElement.reset();
 });
 
+const themeToggleElement = document.querySelector("#themeToggle");
+
+const defaultTheme = localStorage.getItem("theme");
+if (defaultTheme !== null) {
+	themeToggleElement.checked = defaultTheme === "dark";
+}
+
+themeToggleElement.addEventListener("input", (event) => {
+	const theme = event.target.checked ? 'dark' : "light";
+	document.documentElement.setAttribute('data-theme', theme);
+	localStorage.setItem("theme", theme);
+})

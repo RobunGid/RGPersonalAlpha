@@ -58,8 +58,78 @@ $laptop-screen-padding: 10%;
 $desktop-screen-padding: 8%;
 $large-screen-padding: 12%;
 
+:root,
+[data-theme="light"] {
+  --color-bg:            #{$white-100};
+  --color-bg-100:        #{$gray-100};
+  --color-bg-200:        #{$gray-200};
+  --color-bg-300:        #{$gray-300};
+  --color-surface:       #ffffff;
+  --color-surface-modal: #fefefe;
+
+  --color-text-primary:  #{$black-300};
+  --color-text-700:      #{$gray-700};
+  --color-text-600:      #{$gray-600};
+  --color-text-800:      #{$gray-800};
+  --color-text-inverted: #{$white-100};
+
+  --color-border:        #{$gray-200};
+  --color-border-300:    #{$gray-300};
+  --color-border-modal:  #888;
+
+  --color-aqua:          #{$aqua-500};
+
+  --color-main-section-from: rgba(240, 255, 252, 1);
+  --color-main-section-to:   rgba(215, 219, 219, 1);
+
+  --color-header-bg:     #{$white-100};
+  --color-footer-from:   #{$slate-300};
+  --color-footer-to:     #{$slate-500};
+
+  --color-primary:       #{$primary-color};
+  --color-secondary:     #{$secondary-color};
+
+  --color-shadow-overlay: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] {
+  --color-bg:            #121212;
+  --color-bg-100:        #1e1e1e;
+  --color-bg-200:        #2a2a2a;
+  --color-bg-300:        #3a3a3a;
+  --color-surface:       #1e1e1e;
+  --color-surface-modal: #1e1e1e;
+
+  --color-text-primary:  #f0f0f0;
+  --color-text-700:      #c0c0c0;
+  --color-text-600:      #a0a0a0;
+  --color-text-800:      #e0e0e0;
+  --color-text-inverted: #121212;
+
+  --color-border:        #3a3a3a;
+  --color-border-300:    #444444;
+  --color-border-modal:  #555;
+
+  --color-aqua:          #2e2e48;
+
+  --color-main-section-from: #131312;
+  --color-main-section-to:   #141415;
+
+  --color-header-bg:     #181818;
+  --color-footer-from:   #0d1020;
+  --color-footer-to:     #161e2e;
+
+  --color-primary:       #{$primary-color};
+  --color-secondary:     #{$secondary-color};
+
+  --color-shadow-overlay: rgba(0, 0, 0, 0.65);
+}
+
 body {
 	font-family: $primary-font;
+	background-color: var(--color-bg);
+	color: var(--color-text-primary);
+	transition: background-color 300ms, color 300ms;
 }
 
 $screen-tiny-min: 0px;
@@ -118,25 +188,72 @@ $screen-large-min: 1201px;
 }
 
 
-@mixin padding ($x-padding: 0px, $y-padding: 0px, $multiplier: 1) { 
-	@include for-tiny-screen {
-		padding: if($y-padding != 0px, $y-padding * $multiplier, $tiny-screen-padding * $multiplier) if($x-padding != 0px, $x-padding * $multiplier, $tiny-screen-padding * $multiplier);
-	}
-	@include for-mobile-screen {
-		padding: if($y-padding != 0px, $y-padding, $mobile-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $mobile-screen-padding * $multiplier);
-	}
-	@include for-tablet-screen {
-		padding: if($y-padding != 0px, $y-padding, $tablet-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $tablet-screen-padding * $multiplier);
-	}
-	@include for-laptop-screen {
-		padding: if($y-padding != 0px, $y-padding, $laptop-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $laptop-screen-padding * $multiplier);
-	}
-	@include for-desktop-screen {
-		padding: if($y-padding != 0px, $y-padding, $desktop-screen-padding) if($x-padding != 0px, $x-padding * $multiplier, $desktop-screen-padding * $multiplier);
-	}
-	@include for-large-screen {
-		padding: if($y-padding != 0px, $y-padding * $multiplier, $large-screen-padding * $multiplier) if($x-padding != 0px, $x-padding * $multiplier, $large-screen-padding * $multiplier);
-	}
+@mixin padding($x-padding: 0px, $y-padding: 0px, $multiplier: 1) {
+  @include for-tiny-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding * $multiplier;
+      else: $tiny-screen-padding * $multiplier
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $tiny-screen-padding * $multiplier
+    );
+  }
+
+  @include for-mobile-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding;
+      else: $mobile-screen-padding
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $mobile-screen-padding * $multiplier
+    );
+  }
+
+  @include for-tablet-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding;
+      else: $tablet-screen-padding
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $tablet-screen-padding * $multiplier
+    );
+  }
+
+  @include for-laptop-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding;
+      else: $laptop-screen-padding
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $laptop-screen-padding * $multiplier
+    );
+  }
+
+  @include for-desktop-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding;
+      else: $desktop-screen-padding
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $desktop-screen-padding * $multiplier
+    );
+  }
+
+  @include for-large-screen {
+    padding: if(
+      sass($y-padding != 0px): $y-padding * $multiplier;
+      else: $large-screen-padding * $multiplier
+    )
+    if(
+      sass($x-padding != 0px): $x-padding * $multiplier;
+      else: $large-screen-padding * $multiplier
+    );
+  } 
 }
 
 @mixin shadow($size: "small") {
@@ -187,26 +304,40 @@ $default-transition-delay: 0ms;
 }
 
 .circle-link {
-	background-color: color.mix($primary-color, $white-100, $weight: 15%);
-	color: color.mix($primary-color, $white-100, $weight: 90%);
-	width: 48px;
-	height: 48px;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
+	display: inline-flex;
 	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	text-decoration: none;
+	flex-shrink: 0;
 	cursor: pointer;
-	position: relative;
-	&:hover {
-		background-color: color.mix($primary-color, $white-100, $weight: 90%);
-		color: color.mix($primary-color, $white-100, $weight: 15%);
+
+	svg {
+		display: block;
+		width: 20px;
+		height: 20px;
+		pointer-events: none;
 	}
-	&__dark {
-		background-color: color.adjust(color.mix($primary-color, $gray-800, $weight: 40%));
-		color: color.adjust(color.mix($primary-color, $white-100, $weight: 65%));
+
+  &__dark {
+		background-color: #1a1a1a;
+		color: #ffffff;
+		border: 0.5px solid rgba(#fff, 0.08);
+
 		&:hover {
-			background-color: color.adjust(color.mix($primary-color, $gray-800, $weight: 65%));
-			color: color.adjust(color.mix($primary-color, $white-100, $weight: 10%));
+			background-color: #333333;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(#000, 0.25);
+		}
+		&:active {
+			transform: scale(0.95);
+			box-shadow: none;
+		}
+		&:focus-visible {
+			outline: 2px solid rgba(#fff, 0.5);
+			outline-offset: 2px;
 		}
 	}
 	@include transition((color, background-color), $durations: (200ms, 200ms), $delays: (0ms, 0ms));
@@ -241,9 +372,9 @@ $default-transition-delay: 0ms;
 	}
 
 	&__secondary {
-		background-color: $white-100;
+		background-color: var(--color-surface);
 		padding: 10px 30px;
-		color: $black-300;
+		color: var(--color-text-primary);
 		border-radius: 5px;
 		display: flex;
 		justify-content: center;
@@ -252,7 +383,7 @@ $default-transition-delay: 0ms;
 		line-height: 1;
 		&:hover {
 			color: color.adjust($primary-color, $lightness: -5%);
-			background: color.mix($white-100, $primary-color, $weight: 90%);
+			background: var(--color-aqua);
 			@include shadow($size: "medium");
 		}
 		@include shadow();
@@ -283,22 +414,11 @@ $default-transition-delay: 0ms;
 	}
 	&--header-logo {
 		border-radius: 10px;
-		width: 40px;
-		height: 40px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		filter: progid:DXImageTransform.Microsoft.gradient(
-			startColorstr="#8100EB",
-			endColorstr="#B753ED",
-			GradientType=0
-		);
-		&:hover {
-			@include shadow($size: "medium");
-		}
-		@include shadow($size: "small");
-		@include transition($transitions: ("box-shadow"));
-		@include gradient;
+		gap: 15px;
+
 	}
 	&--header-navbar {
 		display: flex;
@@ -314,9 +434,10 @@ $default-transition-delay: 0ms;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: $white-100;
+	background-color: var(--color-header-bg);
 	z-index: 1000;
 	box-sizing: border-box;
+	transition: background-color 300ms;
 
 	&--logo-icon {
 		width: 25px;
@@ -345,6 +466,7 @@ $default-transition-delay: 0ms;
 		position: relative;
 		z-index: 1000;
 		cursor: pointer;
+		color: var(--color-text-primary);
 
 		&__active {
 			color: $primary-color;
@@ -392,6 +514,37 @@ $default-transition-delay: 0ms;
 			width: 140px;
 		}
 	}
+	&--gradient {
+		border-radius: 10px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		@include gradient;
+		@include shadow($size: "small");
+		@include transition($transitions: ("box-shadow"));
+	}
+	&--logo-text {
+		font-size: $font-125;
+		&__space {
+			background: linear-gradient(
+				90deg,
+				#290e55,
+				#5a1e7a,
+				#7b2cbf,
+				#9d4edd,
+				#c77dff,
+				#7b2cbf,
+				#4a148c
+			);
+			background-size: 300% 300%;
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			animation: spaceGradient 6s ease infinite;
+		}
+	}
 	@include shadow($size: "small");
 	@include for-mobile-screen() {
 		justify-content: space-between;
@@ -422,24 +575,26 @@ $default-transition-delay: 0ms;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--about {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--main {
 		margin-top: 85px;
-		background: #f0fffc;
-		background: -webkit-linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
-		background: -moz-linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
-		background: linear-gradient(127deg, rgba(240, 255, 252, 1) 0%, rgba(215, 219, 219, 1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F0FFFC", endColorstr="#D7DBDB", GradientType=0);
+		background: var(--color-main-section-from);
+		background: -webkit-linear-gradient(127deg, var(--color-main-section-from) 0%, var(--color-main-section-to) 100%);
+		background: -moz-linear-gradient(127deg, var(--color-main-section-from) 0%, var(--color-main-section-to) 100%);
+		background: linear-gradient(127deg, var(--color-main-section-from) 0%, var(--color-main-section-to) 100%);
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		transition: background 300ms;
 		@include padding($y-padding: 4rem);
 		@include for-desktop-screen {
 			flex-wrap: nowrap;
@@ -447,30 +602,35 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--projects {
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--skills {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--skills-stats {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--pluses {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	&--contact {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		background-color: var(--color-bg);
 		@include padding($y-padding: 2rem);
 	}
 	
@@ -493,7 +653,7 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--2 {
-		color: $gray-800;
+		color: var(--color-text-800);
 		font-size: $font-150;
 		display: flex;
 		align-items: center;
@@ -547,14 +707,14 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--3 {
-		color: $gray-600;
+		color: var(--color-text-600);
 		font-weight: 300;
 		&__centered {
 			text-align: center;
 		}
 	}
 	&--4 {
-		color: $gray-700;
+		color: var(--color-text-700);
 		font-size: $font-112;
 		font-weight: 300;
 		&__centered {
@@ -620,7 +780,7 @@ $default-transition-delay: 0ms;
 
 .text {
 	font-size: $font-100;
-	color: $gray-700;
+	color: var(--color-text-700);
 	&__main {
 		min-width: 300px;
 		max-width: 400px;
@@ -640,7 +800,7 @@ $default-transition-delay: 0ms;
 	}
 	&__secondary {
 		height: 4px;
-		background: $gray-300;
+		background: var(--color-bg-300);
 		width: 100%;
 		border-radius: 3px;
 		border: none;
@@ -670,6 +830,7 @@ $default-transition-delay: 0ms;
 		margin: 10px 0 0 0;
 		font-size: $font-150;
 		font-weight: 500;
+		color: var(--color-text-800);
 	}
 
 	&--item {
@@ -679,6 +840,7 @@ $default-transition-delay: 0ms;
 		padding: 10px;
 		border-radius: 10px;
 		position: relative;
+		background-color: var(--color-surface);
 		&__centered {
 			display: flex;
 			justify-content: center;
@@ -754,6 +916,7 @@ $default-transition-delay: 0ms;
 		padding: 3px 3px 3px 8px;
 		border-radius: 8px;
 		position: relative;
+		color: var(--color-text-700);
 		@include transition((background-color));
 		&::before {
 			content: "";
@@ -771,7 +934,7 @@ $default-transition-delay: 0ms;
 			opacity: 1
 		}
 		&:hover {
-			background-color: $aqua-500;
+			background-color: var(--color-aqua);
 		}
 	}
 	@include for-large-screen() {
@@ -787,6 +950,7 @@ $default-transition-delay: 0ms;
 
 	&--text {
 		text-align: center;
+		color: var(--color-text-700);
 	}
 
 	&--title {
@@ -797,6 +961,7 @@ $default-transition-delay: 0ms;
 	}
 	&--subtitle {
 		font-size: $font-150;
+		color: var(--color-text-800);
 		@include for-desktop-screen() {
 			margin: 10px 0 0 0;
 		}
@@ -806,6 +971,7 @@ $default-transition-delay: 0ms;
 		cursor: default;
 		user-select: none;
 		gap: 10px;
+		background-color: var(--color-surface);
 		&__centered {
 			display: flex;
 			justify-content: start;
@@ -852,7 +1018,7 @@ $default-transition-delay: 0ms;
 	margin: 30px 0px;
 
 	&--rule {
-		background-color: $gray-800;
+		background-color: var(--color-border-300);
 		border: none;
 		height: 1px;
 		width: 100%;
@@ -860,15 +1026,19 @@ $default-transition-delay: 0ms;
 	&--text {
 		font-size: $font-90;
 		margin: 0;
+		color: var(--color-text-700);
 	}
 	&--title {
 		margin: 0;
+		color: var(--color-text-800);
 	}
 	&--content {
 		padding: 20px;
 		gap: 10px;
 		display: flex;
 		flex-direction: column;
+		background-color: var(--color-surface);
+		border-radius: 0 0 15px 15px;
 	}
 	&--image {
 		width: 100%;
@@ -890,6 +1060,7 @@ $default-transition-delay: 0ms;
 		mask-image: linear-gradient(45deg, #000 25%, rgba(0,0,0,.6) 50%, #000 75%);
 		-webkit-mask-size: 800%;
 		mask-size: 800%;
+		width: 100%;
 		-webkit-mask-position: 0;
 		mask-position: 0;
 		transition: mask-position 2s ease, -webkit-mask-position 2s ease;
@@ -924,7 +1095,7 @@ $default-transition-delay: 0ms;
 	}
 	&--date {
 		font-size: $font-75;
-		color: $gray-600;
+		color: var(--color-text-600);
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -937,20 +1108,19 @@ $default-transition-delay: 0ms;
 		align-items: center;
 		white-space: nowrap;
 		cursor: default;
-		color: color.scale($primary-color, $lightness: -15%);
 		font-weight: 600;
 		font-size: $font-90;
 		padding: 5px 10px;
 		border: solid 1px transparent;
 		background-image: 
-			linear-gradient(white, white), 
+			linear-gradient(var(--color-surface), var(--color-surface)), 
 			radial-gradient(circle at top left, $primary-color, $secondary-color);
 		background-origin: border-box;
 		background-clip: padding-box, border-box;
 		&:hover {
 			border: solid 1px transparent;
 			background-image: 
-				linear-gradient($aqua-500, $aqua-500), 
+				linear-gradient(var(--color-aqua), var(--color-aqua)), 
 				radial-gradient(circle at top left, $primary-color, $secondary-color);
 			background-origin: border-box;
 			background-clip: padding-box, border-box;
@@ -963,6 +1133,7 @@ $default-transition-delay: 0ms;
 		flex-direction: column;
 		align-items: center;
 		border-radius: 15px;
+		background-color: var(--color-surface);
 		@include shadow($size: medium);
 	}
 }
@@ -1013,12 +1184,12 @@ $default-transition-delay: 0ms;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid $gray-300;
+		border: 1px solid var(--color-border-300);
 		border-radius: 5px;
 		padding: 3px 10px;
-		color: $gray-600;
+		color: var(--color-text-600);
 		height: 25px;
-		background: $gray-200;
+		background: var(--color-bg-200);
 		width: 100%;
 		@include for-tablet-screen() {
 			width: initial;
@@ -1041,7 +1212,7 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--down-arrow {
-		color: $gray-600
+		color: var(--color-text-600);
 	}
 	&--item {
 		border-radius: 15px;
@@ -1050,6 +1221,7 @@ $default-transition-delay: 0ms;
 		flex-direction: column;
 		gap: 3px;
 		min-width: 200px;
+		background-color: var(--color-surface);
 		&__advanced {
 			border: $green-500 2px solid;
 			&:hover {
@@ -1078,7 +1250,7 @@ $default-transition-delay: 0ms;
 	}
 	&--item-experience {
 		font-size: $font-75;
-		color: $gray-600;
+		color: var(--color-text-600);
 	}
 	&--progress-container {
 		display: flex;
@@ -1087,7 +1259,7 @@ $default-transition-delay: 0ms;
 		justify-content: center;
 	}
 	&--progress-bar-container {
-		background: $gray-200;
+		background: var(--color-bg-200);
 		justify-content: flex-start;
 		border-radius: 100px;
 		align-items: center;
@@ -1136,11 +1308,11 @@ $default-transition-delay: 0ms;
 	}
 	&--progress-title {
 		font-size: $font-75;
-		color: $gray-800;
+		color: var(--color-text-800);
 	}
 	&--item-level {
 		font-size: $font-85;
-		color: $gray-800;
+		color: var(--color-text-800);
 		padding-top: 4px;
 		font-weight: 500;
 	}
@@ -1165,6 +1337,7 @@ $default-transition-delay: 0ms;
 	}
 	&--item-title {
 		font-weight: 500;
+		color: var(--color-text-800);
 	}
 	&--icon-title-container {
 		display: flex;
@@ -1190,6 +1363,7 @@ $default-transition-delay: 0ms;
 		width: 160px;
 		position: relative;
 		overflow: hidden;
+		background-color: var(--color-surface);
 		@include shadow();
 		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
 		&::before {
@@ -1243,9 +1417,10 @@ $default-transition-delay: 0ms;
 	&--number {
 		font-size: $font-200;
 		font-weight: 600;
+		color: var(--color-text-800);
 	}
 	&--level {
-		color: $gray-600;
+		color: var(--color-text-600);
 		font-size: $font-150;
 		font-weight: 600;
 	}
@@ -1256,7 +1431,7 @@ $default-transition-delay: 0ms;
 		justify-content: center;
 	}
 	&--progress-bar-container {
-		background: $gray-200;
+		background: var(--color-bg-200);
 		justify-content: flex-start;
 		border-radius: 100px;
 		align-items: center;
@@ -1344,22 +1519,24 @@ $default-transition-delay: 0ms;
 	}
 	&--item-btn {
 		width: 100%;
-		border: 1px solid $gray-300;
+		border: 1px solid var(--color-border-300);
 		border-radius: 5px;
 		padding: 10px 5px;
 		color: $primary-color;
+		background-color: var(--color-surface);
 		@include transition((background-color));
 		@include shadow($size: small);
 		&:hover {
-			background-color: $gray-100;
+			background-color: var(--color-bg-100);
 		}
 	}
 	&--title {
 		font-size: $font-125;
 		font-weight: 600;
+		color: var(--color-text-800);
 	}
 	&--text {
-		color: $gray-700;
+		color: var(--color-text-700);
 	}
 	&--icon {
 		padding: 5px;
@@ -1392,6 +1569,7 @@ $default-transition-delay: 0ms;
 		gap: 15px;
 		position: relative;
 		overflow: hidden;
+		background-color: var(--color-surface);
 		@include shadow();
 		@include transition((box-shadow, -webkit-box-shadow, -moz-box-shadow));
 		@include for-tablet-screen() {
@@ -1408,7 +1586,7 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--brief {
-		background-color: $gray-100;
+		background-color: var(--color-bg-100);
 		padding: 10px;
 		border-radius: 10px;
 		position: relative;
@@ -1440,11 +1618,12 @@ $default-transition-delay: 0ms;
 		display: flex;
 		align-items: center;
 		gap: 5px;
+		color: var(--color-text-700);
 		&__animated {
 			&:hover {
-				color: $gray-800;
+				color: var(--color-text-800);
 				& .contact--link {
-					color: $gray-800;
+					color: var(--color-text-800);
 				}
 			}
 			@include transition((color));
@@ -1466,6 +1645,7 @@ $default-transition-delay: 0ms;
 		width: 100%;
 		gap: 5px;
 		font-size: $font-100;
+		color: var(--color-text-700);
 	}
 	&--btn-container { 
 		display: flex;
@@ -1476,15 +1656,17 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--link {
-		color: $black-300;
+		color: var(--color-text-primary);
 		text-decoration: none;
 	}
 	&--input {
-		border: 2px solid $gray-200;
+		border: 2px solid var(--color-border);
 		border-radius: 10px;
 		padding: 10px 10px;
 		outline: none;
 		box-sizing: border-box;
+		background-color: var(--color-surface);
+		color: var(--color-text-primary);
 		&:hover {
 			border: 2px solid color.mix($primary-color, $gray-200, $weight: 30%);
 		}
@@ -1494,7 +1676,7 @@ $default-transition-delay: 0ms;
 		@include transition((border));
 	}
 	&--textarea {
-		border: 2px solid $gray-300;
+		border: 2px solid var(--color-border-300);
 		border-radius: 10px;
 		padding: 5px 20px;
 		outline: none;	
@@ -1502,6 +1684,8 @@ $default-transition-delay: 0ms;
 		padding: 10px 10px;
 		box-sizing: border-box;
 		width: 100%;
+		background-color: var(--color-surface);
+		color: var(--color-text-primary);
 		&:hover {
 			border: 2px solid color.mix($primary-color, $gray-200, $weight: 30%);
 		}
@@ -1539,7 +1723,7 @@ $default-transition-delay: 0ms;
 		right: 0;
 		margin: 0px 20px 12px 0px;
 		font-size: $font-75;
-		color: $gray-600;
+		color: var(--color-text-600);
 		&__blink {
 			animation: error-blink 1000ms;
 			animation-iteration-count: 1;
@@ -1556,7 +1740,11 @@ $default-transition-delay: 0ms;
 	flex-direction: column;
 	gap: 40px;
 	padding: 50px;
-	@include gradient(slate);
+	background: var(--color-footer-from);
+	background: -webkit-linear-gradient(127deg, var(--color-footer-from) 0%, var(--color-footer-to) 100%);
+	background: -moz-linear-gradient(127deg, var(--color-footer-from) 0%, var(--color-footer-to) 100%);
+	background: linear-gradient(127deg, var(--color-footer-from) 0%, var(--color-footer-to) 100%);
+	transition: background 300ms;
 	&--text {
 		color: $white-100;
 		font-size: $font-125;
@@ -1588,8 +1776,7 @@ $default-transition-delay: 0ms;
 	opacity: 100;
 	overflow: auto; 
 	pointer-events: all;
-	background-color: rgb(0,0,0); 
-	background-color: rgba(0,0,0,0.4); 
+	background-color: var(--color-shadow-overlay);
 	&__hidden {
 		opacity: 0;
 		pointer-events: none;
@@ -1598,21 +1785,22 @@ $default-transition-delay: 0ms;
 		}
 	}
 	&--content {
-		background-color: #fefefe;
+		background-color: var(--color-surface-modal);
+		color: var(--color-text-primary);
 		margin: 15% auto;
 		padding: 20px;
-		border: 1px solid #888;
+		border: 1px solid var(--color-border-modal);
 		width: 80%;
 		transform: scale(1);
 		@include transition((transform))
 	}
 	&--close {
-		color: #aaa;
+		color: var(--color-text-600);
 		float: right;
 		font-size: 28px;
 		font-weight: bold;
 		&:hover, &:focus {
-			color: black;
+			color: var(--color-text-primary);
 			text-decoration: none;
 			cursor: pointer;
 		}
@@ -1628,6 +1816,77 @@ $default-transition-delay: 0ms;
 	position: absolute;
 	white-space: nowrap; 
 	width: 1px;
+}
+
+.theme-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 64px;
+  height: 34px;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .theme-switch--slider {
+      background-color: var(--color-bg-200);
+    }
+
+    &:checked + .theme-switch--slider::before {
+      transform: translateX(30px);
+      background-color: var(--color-primary);
+    }
+
+    &:checked + .theme-switch--slider {
+      box-shadow: inset 0 0 0 1px var(--color-border-300);
+    }
+  }
+
+  &--slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background-color: var(--color-bg-100);
+    border: 1px solid var(--color-border);
+    transition: background-color 250ms, box-shadow 250ms;
+
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238a8a8a'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3A7 7 0 1 0 21 12.8z'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f5a524'%3E%3Cpath d='M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12z'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: 10px center, calc(100% - 5px) center;
+    background-size: 20px 20px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--color-surface);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 250ms, background-color 250ms;
+    }
+  }
+
+  &:hover {
+    .theme-switch--slider {
+      filter: brightness(1.05);
+    }
+  }
+
+  &:active {
+    .theme-switch--slider::before {
+      width: 30px;
+    }
+  }
 }
 
 @keyframes typing600 {
@@ -1675,4 +1934,17 @@ $default-transition-delay: 0ms;
 	100% {
 		transform: translateX(100%);
 	}
+}
+
+@keyframes spaceGradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+
+  }
 }
