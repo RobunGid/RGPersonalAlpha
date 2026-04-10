@@ -9,12 +9,13 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/conf:/etc/nginx/conf.d
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
     depends_on:
       - flask_app
+    networks:
+      - rg-net
   flask_app:
     build:
       context: .
@@ -23,6 +24,8 @@ services:
       - "5000:5000"
     env_file:
       - ./messagebot/.env
+    networks:
+      - rg-net
   telegram_bot:
     build:
       context: .
@@ -32,8 +35,13 @@ services:
       - "8080:8080"
     env_file:
       - ./messagebot/.env
+    networks:
+      - rg-net
   certbot:
     image: certbot/certbot
     volumes:
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
+networks:
+  rg-net:
+    external: true
