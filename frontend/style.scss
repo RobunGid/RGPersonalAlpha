@@ -810,15 +810,8 @@ $default-transition-delay: 0ms;
 .about {
 	display: grid;
 	gap: 100px;
-	grid-template-columns: 1fr;
+	grid-template-columns: minmax(200px, 800px);
 	margin-top: 15px;
-
-	&--item:first-child {
-		grid-column: 1 / -1;
-		@include for-large-screen() {
-			margin: 0 25% 0 25%;
-		}
-	}
 
 	&--title {
 		margin: 10px 0 0 0;
@@ -936,9 +929,6 @@ $default-transition-delay: 0ms;
 		&:hover {
 			background-color: var(--color-aqua);
 		}
-	}
-	@include for-large-screen() {
-		grid-template-columns: 1fr 1fr;
 	}
 }
 
