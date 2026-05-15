@@ -598,8 +598,8 @@ section {
 }
 
 .project-thumb {
-	height: 120px;
-	background: $bg3;
+	height: 360px;
+	background: linear-gradient(145deg, $bg2 0%, $bg3 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -612,7 +612,41 @@ section {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(135deg, rgba($cyan, 0.05), transparent);
+		background-image:
+			linear-gradient(rgba($cyan, 0.04) 1px, transparent 1px),
+			linear-gradient(90deg, rgba($cyan, 0.04) 1px, transparent 1px);
+		background-size: 32px 32px;
+		mask-image: radial-gradient(
+			ellipse 80% 80% at 50% 50%,
+			black 40%,
+			transparent 100%
+		);
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: -40px;
+		right: -40px;
+		width: 160px;
+		height: 160px;
+		background: radial-gradient(circle, rgba($cyan, 0.12) 0%, transparent 65%);
+		pointer-events: none;
+	}
+}
+
+.project-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	padding: 0;
+	border-radius: 0;
+	position: relative;
+	z-index: 1;
+	@include transition(transform 0.4s ease);
+
+	.project-card:hover & {
+		transform: scale(1.03);
 	}
 }
 
