@@ -1,450 +1,860 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robun Gid — Fullstack Developer & System Administrator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-<link rel="stylesheet" href="style.min.css">
-<link rel="shortcut icon" href="./static/logo.png" type="image/x-icon">
-</head>
-<body>
-<nav id="navbar">
-  <a href="#home" class="nav-logo">
-    <img class="box" src="./static/logo.png" alt="Logo" />
-    Robun Gid
-  </a>
-  <ul class="nav-links">
-    <li><a href="#home" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="burger" id="burgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#experience">Experience</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<section id="home">
-  <div class="hero-left">
-    <div class="hero-label">Fullstack Developer &amp; System Administrator</div>
-    <h1 class="hero-name">Robun <span>Gid</span></h1>
-    <div class="hero-tagline">Building scalable platforms.<br>Automating infrastructure.<br>Delivering real-world solutions.</div>
-    <p class="hero-desc">
-      I build full-stack web applications, manage servers and infrastructure,
-      and automate workflows from development to production.
-    </p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View Projects ➜</a>
-      <a href="#" class="btn btn-outline">Download CV ⬇︎</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-icon">&lt;/&gt;</div>
-        <div>
-          <div class="stat-num">1.5</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">⊞</div>
-        <div>
-          <div class="stat-num">25+</div>
-          <div class="stat-label">Technologies</div>
-        </div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">◻</div>
-        <div>
-          <div class="stat-num">6+</div>
-          <div class="stat-label">Projects Completed</div>
-        </div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">🌐</div>
-        <div>
-          <div class="stat-num">Global</div>
-          <div class="stat-label">Remote Work</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-placeholder">
-        <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="48" r="30" fill="#1a2235"/>
-          <path d="M10 130 Q10 90 60 90 Q110 90 110 130" fill="#1a2235"/>
-        </svg>
-      </div>
-    </div>
-    <div class="terminal-card">
-      <div class="t-header"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span></div>
-      <div class="t-line"><span class="t-cmd">$ whoami</span></div>
-      <div class="t-line"><span class="t-val">> developer</span></div>
-      <div class="t-line"><span class="t-cmd">$ stack --full</span></div>
-      <div class="t-line"><span class="t-val">> web_apps</span></div>
-      <div class="t-line"><span class="t-val">> devops</span></div>
-      <div class="t-line"><span class="t-val">> automation</span></div>
-      <div class="t-line"><span class="t-val">> telegram_bots</span></div>
-      <div class="t-line"><span class="t-val">> infrastructure</span></div>
-    </div>
-	<div class="techstack-card">
-	<div class="ts-label">Tech Stack</div>
-	<div class="ts-icons">
-
-		<div class="ts-icon" title="Linux"><i class="devicon-linux-plain"></i></div>
-		<div class="ts-icon" title="Bash"><i class="devicon-bash-plain"></i></div>
-		<div class="ts-icon" title="Docker"><i class="devicon-docker-plain"></i></div>
-		<div class="ts-icon" title="Nginx"><i class="devicon-nginx-original"></i></div>
-		<div class="ts-icon" title="Networking"><i class="devicon-cloudflare-plain"></i></div>
-		<div class="ts-icon" title="Git"><i class="devicon-git-plain"></i></div>
-		<div class="ts-icon" title="GitHub Actions"><i class="devicon-github-original"></i></div>
-		<div class="ts-icon" title="Ansible"><i class="devicon-ansible-plain"></i></div>
-		<div class="ts-icon" title="Apache"><i class="devicon-apache-plain"></i></div>
-		<div class="ts-icon" title="PowerShell"><i class="devicon-windows8-original"></i></div>
-
-		<div class="ts-icon" title="HTML"><i class="devicon-html5-plain"></i></div>
-		<div class="ts-icon" title="CSS"><i class="devicon-css3-plain"></i></div>
-		<div class="ts-icon" title="JavaScript"><i class="devicon-javascript-plain"></i></div>
-		<div class="ts-icon" title="React"><i class="devicon-react-original"></i></div>
-		<div class="ts-icon" title="TypeScript"><i class="devicon-typescript-plain"></i></div>
-		<div class="ts-icon" title="Tailwind"><i class="devicon-tailwindcss-plain"></i></div>
-		<div class="ts-icon" title="Redux"><i class="devicon-redux-original"></i></div>
-		<div class="ts-icon" title="Sass"><i class="devicon-sass-original"></i></div>
-
-		<div class="ts-icon" title="Python"><i class="devicon-python-plain"></i></div>
-		<div class="ts-icon" title="Flask"><i class="devicon-flask-original"></i></div>
-		<div class="ts-icon" title="SQL"><i class="devicon-mysql-plain"></i></div>
-		<div class="ts-icon" title="SQLAlchemy"><i class="devicon-sqlalchemy-plain"></i></div>
-		<div class="ts-icon" title="Django"><i class="devicon-django-plain"></i></div>
-		<div class="ts-icon" title="Aiogram"><i class="devicon-python-plain"></i></div>
-
-	</div>
-	</div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="section-title"><span class="icon">👤</span> Overview</div>
-  <div class="card fade-in">
-    <p>
-      Fullstack developer and system administrator with ~1.5 years of experience.
-      Works across frontend, backend, DevOps, and infrastructure. Focus on scalable architecture,
-      performance, automation, and production-ready deployment. Comfortable with both
-      Linux/Windows environments and modern web stacks.
-    </p>
-    <p>
-      Core strengths include building full-stack web applications, managing servers and networking,
-      implementing CI/CD pipelines, working with databases, and developing automation scripts.
-    </p>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="section-title"><span class="icon">&lt;/&gt;</span> Skills</div>
-  <div class="card fade-in">
-    <div class="skills-grid">
-		<div class="skills-col">
-			<h3>1. System Administration & DevOps</h3>
-			<div class="skill-item"><span class="skill-num">1.</span><i class="devicon-linux-plain"></i><span class="skill-name">Linux</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">2.</span><i class="devicon-bash-plain"></i><span class="skill-name">Bash</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">3.</span><i class="devicon-docker-plain"></i><span class="skill-name">Docker</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">4.</span><i class="devicon-nginx-original"></i><span class="skill-name">Nginx</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">5.</span><i class="devicon-cloudflare-plain"></i><span class="skill-name">Networking</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">6.</span><i class="devicon-git-plain"></i><span class="skill-name">Git & GitHub</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">7.</span><i class="devicon-windows8-original"></i><span class="skill-name">Windows PowerShell</span><span class="skill-badge badge-beg">beginner</span></div>
-			<div class="skill-item"><span class="skill-num">8.</span><i class="devicon-apache-plain"></i><span class="skill-name">Apache Web Server</span><span class="skill-badge badge-beg">beginner</span></div>
-			<div class="skill-item"><span class="skill-num">9.</span><i class="devicon-github-original"></i><span class="skill-name">GitHub Actions</span><span class="skill-badge badge-beg">beginner</span></div>
-			<div class="skill-item"><span class="skill-num">10.</span><i class="devicon-ansible-plain"></i><span class="skill-name">Ansible</span><span class="skill-badge badge-beg">beginner</span></div>
-			<div class="skill-item"><span class="skill-num">11.</span><i class="devicon-linux-plain"></i><span class="skill-name">Nmap</span><span class="skill-badge badge-beg">beginner</span></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Robun Gid — Fullstack Developer & System Administrator</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Unbounded:wght@400;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+		/>
+		<link rel="stylesheet" href="style.min.css" />
+		<link rel="shortcut icon" href="./static/logo.png" type="image/x-icon" />
+	</head>
+	<body>
+		<nav id="navbar">
+			<a href="#home" class="nav-logo">
+				<img class="box" src="./static/logo.png" alt="Logo" />
+				Robun Gid
+			</a>
+			<ul class="nav-links">
+				<li><a href="#home" class="active">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<div class="nav-right">
+				<button class="burger" id="burgerBtn" aria-label="Menu">
+					<span></span><span></span><span></span>
+				</button>
+			</div>
+		</nav>
+		<div class="mobile-menu" id="mobileMenu">
+			<a href="#home">Home</a>
+			<a href="#about">About</a>
+			<a href="#skills">Skills</a>
+			<a href="#projects">Projects</a>
+			<a href="#experience">Experience</a>
+			<a href="#contact">Contact</a>
 		</div>
 
-		<div class="skills-col">
-			<h3>2. Frontend Development</h3>
-			<div class="skill-item"><span class="skill-num">13.</span><i class="devicon-html5-plain"></i><span class="skill-name">HTML & CSS</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">14.</span><i class="devicon-javascript-plain"></i><span class="skill-name">JavaScript</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">15.</span><i class="devicon-react-original"></i><span class="skill-name">React</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">16.</span><i class="devicon-typescript-plain"></i><span class="skill-name">TypeScript</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">17.</span><i class="devicon-tailwindcss-plain"></i><span class="skill-name">Tailwind CSS</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">18.</span><i class="devicon-redux-original"></i><span class="skill-name">Redux / RTK</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">19.</span><i class="devicon-sass-original"></i><span class="skill-name">Sass</span><span class="skill-badge badge-beg">beginner</span></div>
-		</div>
+		<section id="home">
+			<div class="hero-left">
+				<div class="hero-label">
+					Fullstack Developer &amp; System Administrator
+				</div>
+				<h1 class="hero-name">Robun <span>Gid</span></h1>
+				<div class="hero-tagline">
+					Building scalable platforms.<br />Automating infrastructure.<br />Delivering
+					real-world solutions.
+				</div>
+				<p class="hero-desc">
+					I build full-stack web applications, manage servers and
+					infrastructure, and automate workflows from development to production.
+				</p>
+				<div class="hero-btns">
+					<a href="#projects" class="btn btn-primary">View Projects ➜</a>
+					<a href="#" class="btn btn-outline">Download CV ⬇︎</a>
+				</div>
+				<div class="hero-stats">
+					<div class="stat">
+						<div class="stat-icon">&lt;/&gt;</div>
+						<div>
+							<div class="stat-num">&gt;1.5</div>
+							<div class="stat-label">Years Experience</div>
+						</div>
+					</div>
+					<div class="stat">
+						<div class="stat-icon">⊞</div>
+						<div>
+							<div class="stat-num">25+</div>
+							<div class="stat-label">Technologies</div>
+						</div>
+					</div>
+					<div class="stat">
+						<div class="stat-icon">◻</div>
+						<div>
+							<div class="stat-num">6+</div>
+							<div class="stat-label">Projects Completed</div>
+						</div>
+					</div>
+					<div class="stat">
+						<div class="stat-icon">🌐</div>
+						<div>
+							<div class="stat-num">Global</div>
+							<div class="stat-label">Remote Work</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-		<div class="skills-col">
-			<h3>3. Backend Development</h3>
-			<div class="skill-item"><span class="skill-num">21.</span><i class="devicon-python-plain"></i><span class="skill-name">Python</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">22.</span><i class="devicon-flask-original"></i><span class="skill-name">Flask</span><span class="skill-badge badge-adv">advanced</span></div>
-			<div class="skill-item"><span class="skill-num">23.</span><i class="devicon-mysql-plain"></i><span class="skill-name">SQL</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">24.</span><i class="devicon-sqlalchemy-plain"></i><span class="skill-name">SQLAlchemy</span><span class="skill-badge badge-int">intermediate</span></div>
-			<div class="skill-item"><span class="skill-num">25.</span><i class="devicon-django-plain"></i><span class="skill-name">Django</span><span class="skill-badge badge-beg">beginner</span></div>
-			<div class="skill-item"><span class="skill-num">26.</span><i class="devicon-python-plain"></i><span class="skill-name">Aiogram</span><span class="skill-badge badge-beg">beginner</span></div>
-		</div>
-		</div>
-  </div>
-</section>
+			<div class="hero-right">
+				<div class="hero-photo-wrap">
+					<div class="hero-photo-placeholder">
+						<svg
+							width="120"
+							height="140"
+							viewBox="0 0 120 140"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle cx="60" cy="48" r="30" fill="#1a2235" />
+							<path
+								d="M10 130 Q10 90 60 90 Q110 90 110 130"
+								fill="#1a2235"
+							/>
+						</svg>
+					</div>
+				</div>
+				<div class="terminal-card">
+					<div class="t-header">
+						<span class="dot dot-r"></span><span class="dot dot-y"></span
+						><span class="dot dot-g"></span>
+					</div>
+					<div class="t-line"><span class="t-cmd">$ whoami</span></div>
+					<div class="t-line"><span class="t-val">> developer</span></div>
+					<div class="t-line"><span class="t-cmd">$ stack --full</span></div>
+					<div class="t-line"><span class="t-val">> web_apps</span></div>
+					<div class="t-line"><span class="t-val">> devops</span></div>
+					<div class="t-line"><span class="t-val">> automation</span></div>
+					<div class="t-line"><span class="t-val">> telegram_bots</span></div>
+					<div class="t-line"><span class="t-val">> infrastructure</span></div>
+				</div>
+				<div class="techstack-card">
+					<div class="ts-label">Tech Stack</div>
+					<div class="ts-icons">
+						<div class="ts-icon" title="Linux">
+							<i class="devicon-linux-plain"></i>
+						</div>
+						<div class="ts-icon" title="Bash">
+							<i class="devicon-bash-plain"></i>
+						</div>
+						<div class="ts-icon" title="Docker">
+							<i class="devicon-docker-plain"></i>
+						</div>
+						<div class="ts-icon" title="Nginx">
+							<i class="devicon-nginx-original"></i>
+						</div>
+						<div class="ts-icon" title="Networking">
+							<i class="devicon-cloudflare-plain"></i>
+						</div>
+						<div class="ts-icon" title="Git">
+							<i class="devicon-git-plain"></i>
+						</div>
+						<div class="ts-icon" title="GitHub Actions">
+							<i class="devicon-github-original"></i>
+						</div>
+						<div class="ts-icon" title="Ansible">
+							<i class="devicon-ansible-plain"></i>
+						</div>
+						<div class="ts-icon" title="Apache">
+							<i class="devicon-apache-plain"></i>
+						</div>
+						<div class="ts-icon" title="PowerShell">
+							<i class="devicon-windows8-original"></i>
+						</div>
 
-<section id="projects">
-  <div class="section-title"><span class="icon">📁</span> Projects</div>
-  <div class="projects-grid">
+						<div class="ts-icon" title="HTML">
+							<i class="devicon-html5-plain"></i>
+						</div>
+						<div class="ts-icon" title="CSS">
+							<i class="devicon-css3-plain"></i>
+						</div>
+						<div class="ts-icon" title="JavaScript">
+							<i class="devicon-javascript-plain"></i>
+						</div>
+						<div class="ts-icon" title="React">
+							<i class="devicon-react-original"></i>
+						</div>
+						<div class="ts-icon" title="TypeScript">
+							<i class="devicon-typescript-plain"></i>
+						</div>
+						<div class="ts-icon" title="Tailwind">
+							<i class="devicon-tailwindcss-plain"></i>
+						</div>
+						<div class="ts-icon" title="Redux">
+							<i class="devicon-redux-original"></i>
+						</div>
+						<div class="ts-icon" title="Sass">
+							<i class="devicon-sass-original"></i>
+						</div>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">🏢</div>
-      <div class="project-body">
-        <div class="project-title">1. Hautte Real Estate Platform</div>
-        <p class="project-desc">Full commercial real estate platform built from scratch</p>
-        <ul class="project-features">
-          <li>Custom admin panel for property and application management</li>
-          <li>Advanced search with filtering by property type, area, and parameters</li>
-          <li>Responsive UI with inquiry and feedback forms</li>
-          <li>SEO optimization including meta tags, sitemap, robots.txt, structured data</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">⚡ FastAPI</span>
-          <span class="tech-tag">⬢ Next.js</span>
-          <span class="tech-tag">⚛️ React</span>
-          <span class="tech-tag">🐘 PostgreSQL</span>
-          <span class="tech-tag">🐳 Docker</span>
-          <span class="tech-tag">🔴 Nginx</span>
-          <span class="tech-tag">⚙️ GitHub Actions</span>
-        </div>
-      </div>
-    </div>
+						<div class="ts-icon" title="Python">
+							<i class="devicon-python-plain"></i>
+						</div>
+						<div class="ts-icon" title="Flask">
+							<i class="devicon-flask-original"></i>
+						</div>
+						<div class="ts-icon" title="SQL">
+							<i class="devicon-mysql-plain"></i>
+						</div>
+						<div class="ts-icon" title="SQLAlchemy">
+							<i class="devicon-sqlalchemy-plain"></i>
+						</div>
+						<div class="ts-icon" title="Django">
+							<i class="devicon-django-plain"></i>
+						</div>
+						<div class="ts-icon" title="Aiogram">
+							<i class="devicon-python-plain"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">🍿</div>
-      <div class="project-body">
-        <div class="project-title">2. NadSnax Online Store</div>
-        <p class="project-desc">Full-featured snack marketplace built independently</p>
-        <ul class="project-features">
-          <li>User authentication and registration system</li>
-          <li>Custom admin panel for products, categories, and users</li>
-          <li>Multilingual responsive interface</li>
-          <li>Deployment on VPS</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">🌶️ Flask</span>
-          <span class="tech-tag">⚛️ React</span>
-          <span class="tech-tag">🔷 TypeScript</span>
-          <span class="tech-tag">🐘 PostgreSQL</span>
-          <span class="tech-tag">🐳 Docker</span>
-          <span class="tech-tag">🔴 Nginx</span>
-          <span class="tech-tag">⚙️ GitHub Actions</span>
-        </div>
-      </div>
-    </div>
+		<section id="about">
+			<div class="section-title"><span class="icon">👤</span> Overview</div>
+			<div class="card fade-in">
+				<p>
+					Fullstack develope and system administrator with ~1.5 years of
+					experience. Works across frontend, backend, DevOps, and
+					infrastructure. Focus on scalable architecture, performance,
+					automation, and production-ready deployment. Comfortable with both
+					Linux/Windows environments and modern web stacks.
+				</p>
+				<p>
+					Core strengths include building full-stack web applications, managing
+					servers and networking, implementing CI/CD pipelines, working with
+					databases, and developing automation scripts.
+				</p>
+			</div>
+		</section>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">🏗️</div>
-      <div class="project-body">
-        <div class="project-title">3. Beckauto24 Landing Page</div>
-        <p class="project-desc">Landing page for construction equipment company</p>
-        <ul class="project-features">
-          <li>Multi-page responsive layout</li>
-          <li>Contact form integration via email</li>
-          <li>Containerized deployment</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">📄 HTML</span>
-          <span class="tech-tag">🎨 CSS</span>
-          <span class="tech-tag">🟨 JavaScript</span>
-          <span class="tech-tag">🐘 PHP</span>
-          <span class="tech-tag">🐳 Docker</span>
-          <span class="tech-tag">🔴 Nginx</span>
-        </div>
-      </div>
-    </div>
+		<section id="skills">
+			<div class="section-title"><span class="icon">&lt;/&gt;</span> Skills</div>
+			<div class="card fade-in">
+				<div class="skills-grid">
+					<div class="skills-col">
+						<h3>1. System Administration & DevOps</h3>
+						<div class="skill-item">
+							<span class="skill-num">1.</span
+							><i class="devicon-linux-plain"></i
+							><span class="skill-name">Linux</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">2.</span
+							><i class="devicon-bash-plain"></i
+							><span class="skill-name">Bash</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">3.</span
+							><i class="devicon-docker-plain"></i
+							><span class="skill-name">Docker</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">4.</span
+							><i class="devicon-nginx-original"></i
+							><span class="skill-name">Nginx</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">5.</span
+							><i class="devicon-cloudflare-plain"></i
+							><span class="skill-name">Networking</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">6.</span
+							><i class="devicon-git-plain"></i
+							><span class="skill-name">Git & GitHub & GitLab</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">7.</span
+							><i class="devicon-windows8-original"></i
+							><span class="skill-name">Windows PowerShell</span
+							><span class="skill-badge badge-beg">beginner</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">8.</span
+							><i class="devicon-apache-plain"></i
+							><span class="skill-name">Apache Web Server</span
+							><span class="skill-badge badge-beg">beginner</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">9.</span
+							><i class="devicon-github-original"></i
+							><span class="skill-name">GitHub Actions</span
+							><span class="skill-badge badge-beg">beginner</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">10.</span
+							><i class="devicon-ansible-plain"></i
+							><span class="skill-name">Ansible</span
+							><span class="skill-badge badge-beg">beginner</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">11.</span
+							><i class="devicon-linux-plain"></i
+							><span class="skill-name">Nmap</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+					</div>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">📊</div>
-      <div class="project-body">
-        <div class="project-title">4. DJCRM System</div>
-        <p class="project-desc">Full CRM system built with Django</p>
-        <ul class="project-features">
-          <li>Authentication and user profiles</li>
-          <li>Dashboard with CRUD for leads, clients, products, orders</li>
-          <li>Team system with roles, invitations, permissions</li>
-          <li>Internal chat, notifications, file uploads, data export</li>
-          <li>Subscription model structure</li>
-          <li>Dockerized deployment</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">🟢 Django</span>
-          <span class="tech-tag">🐍 Python</span>
-          <span class="tech-tag">🐘 PostgreSQL</span>
-          <span class="tech-tag">🐳 Docker</span>
-          <span class="tech-tag">🔴 Nginx</span>
-        </div>
-      </div>
-    </div>
+					<div class="skills-col">
+						<h3>2. Frontend Development</h3>
+						<div class="skill-item">
+							<span class="skill-num">13.</span
+							><i class="devicon-html5-plain"></i
+							><span class="skill-name">HTML & CSS</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">14.</span
+							><i class="devicon-javascript-plain"></i
+							><span class="skill-name">JavaScript</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">15.</span
+							><i class="devicon-react-original"></i
+							><span class="skill-name">React</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">15.</span
+							><i class="devicon-vuejs-plain"></i
+							><span class="skill-name">Vue</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">16.</span
+							><i class="devicon-typescript-plain"></i
+							><span class="skill-name">TypeScript</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">17.</span
+							><i class="devicon-tailwindcss-plain"></i
+							><span class="skill-name">Tailwind CSS</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">18.</span
+							><i class="devicon-redux-original"></i
+							><span class="skill-name">Redux & RTK</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">18.</span
+							><i class="devicon-vuejs-plain"></i
+							><span class="skill-name">Pinia</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">19.</span
+							><i class="devicon-sass-original"></i
+							><span class="skill-name">Sass</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">19.</span
+							><i class="devicon-less-plain-wordmark"></i
+							><span class="skill-name">Less</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+					</div>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">🔒</div>
-      <div class="project-body">
-        <div class="project-title">5. 3x-UI (VLESS) VPN Service</div>
-        <p class="project-desc">Personal VPN infrastructure setup</p>
-        <ul class="project-features">
-          <li>VPN server deployment and configuration</li>
-          <li>SSH and TLS security setup</li>
-          <li>Firewall configuration (ufw, iptables)</li>
-          <li>Routing and management panel configuration</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">🐧 Linux</span>
-          <span class="tech-tag">🔴 Nginx</span>
-          <span class="tech-tag">🐳 Docker</span>
-          <span class="tech-tag">🛡️ UFW</span>
-          <span class="tech-tag">🔐 TLS</span>
-          <span class="tech-tag">⚡ VLESS</span>
-        </div>
-      </div>
-    </div>
+					<div class="skills-col">
+						<h3>3. Backend Development</h3>
+						<div class="skill-item">
+							<span class="skill-num">21.</span
+							><i class="devicon-python-plain"></i
+							><span class="skill-name">Python</span
+							><span class="skill-badge badge-adv">advanced</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">25.</span
+							><i class="devicon-fastapi-plain"></i
+							><span class="skill-name">FastAPI</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">22.</span
+							><i class="devicon-flask-original"></i
+							><span class="skill-name">Flask</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">23.</span
+							><i class="devicon-mysql-plain"></i
+							><span class="skill-name">SQL (PostgreSQL, MySQL)</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">24.</span
+							><i class="devicon-sqlalchemy-plain"></i
+							><span class="skill-name">SQLAlchemy</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">25.</span
+							><i class="devicon-django-plain"></i
+							><span class="skill-name">Django</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">26.</span
+							><i class="devicon-python-plain"></i
+							><span class="skill-name">Aiogram</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+						<div class="skill-item">
+							<span class="skill-num">26.</span
+							><i class="devicon-cplusplus-plain"></i
+							><span class="skill-name">C++</span
+							><span class="skill-badge badge-int">intermediate</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <div class="project-card fade-in">
-      <div class="project-thumb">🤖</div>
-      <div class="project-body">
-        <div class="project-title">6. Stashify Telegram Bot</div>
-        <p class="project-desc">Educational resources management bot</p>
-        <ul class="project-features">
-          <li>Role system (user, moderator, admin)</li>
-          <li>Resource storage and management system</li>
-          <li>Learning quizzes with quizzes and result tracking</li>
-          <li>Admin panel inside Telegram bot</li>
-        </ul>
-        <div class="tech-tags">
-          <span class="tech-tag">✈️ Aiogram</span>
-          <span class="tech-tag">🐍 Python</span>
-        </div>
-      </div>
-    </div>
+		<section id="projects">
+			<div class="section-title"><span class="icon">📁</span> Projects</div>
+			<div class="projects-grid">
+				<div class="project-card fade-in">
+					<div class="project-thumb">🏢</div>
+					<div class="project-body">
+						<div class="project-title">1. Hautte Real Estate Platform</div>
+						<p class="project-desc">
+							Full commercial real estate platform built from scratch
+						</p>
+						<ul class="project-features">
+							<li>
+								Custom admin panel for property and application management
+							</li>
+							<li>
+								Advanced search with filtering by property type, area, and
+								parameters
+							</li>
+							<li>Responsive UI with inquiry and feedback forms</li>
+							<li>
+								SEO optimization including meta tags, sitemap, robots.txt,
+								structured data
+							</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-fastapi-plain"></i> FastAPI</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nextjs-original"></i> Next.js</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-react-original"></i> React</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-postgresql-plain"></i> PostgreSQL</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-docker-plain"></i> Docker</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nginx-original"></i> Nginx</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-githubactions-plain"></i> GitHub
+								Actions</span
+							>
+						</div>
+					</div>
+				</div>
 
-  </div>
-</section>
+				<div class="project-card fade-in">
+					<div class="project-thumb">🍿</div>
+					<div class="project-body">
+						<div class="project-title">2. NadSnax Online Store</div>
+						<p class="project-desc">
+							Full-featured snack marketplace built independently
+						</p>
+						<ul class="project-features">
+							<li>User authentication and registration system</li>
+							<li>
+								Custom admin panel for products, categories, and users
+							</li>
+							<li>Multilingual responsive interface</li>
+							<li>Deployment on VPS</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-flask-original"></i> Flask</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-react-original"></i> React</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-typescript-plain"></i> TypeScript</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-postgresql-plain"></i> PostgreSQL</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-docker-plain"></i> Docker</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nginx-original"></i> Nginx</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-githubactions-plain"></i> GitHub
+								Actions</span
+							>
+						</div>
+					</div>
+				</div>
 
-<section id="experience">
-  <div class="section-title"><span class="icon">⭐</span> Other Experience</div>
-  <div class="exp-grid fade-in">
-    <div class="exp-item">
-      <div class="ei-icon">🗄️</div>
-      <div class="ei-label">Database design and management (PostgreSQL, MySQL, SQLite)</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">🔗</div>
-      <div class="ei-label">API development (REST, basic GraphQL understanding)</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">♾️</div>
-      <div class="ei-label">CI/CD pipelines and deployment automation</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">🔍</div>
-      <div class="ei-label">SEO optimization for web applications</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">📈</div>
-      <div class="ei-label">System monitoring and maintenance</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">🔄</div>
-      <div class="ei-label">Legacy code support and refactoring</div>
-    </div>
-    <div class="exp-item">
-      <div class="ei-icon">🛡️</div>
-      <div class="ei-label">Security hardening for servers and applications</div>
-    </div>
-  </div>
-</section>
+				<div class="project-card fade-in">
+					<div class="project-thumb">🏗️</div>
+					<div class="project-body">
+						<div class="project-title">3. Specauto24 Landing Page</div>
+						<p class="project-desc">
+							Landing page for construction equipment company
+						</p>
+						<ul class="project-features">
+							<li>Multi-page responsive layout</li>
+							<li>Contact form integration via email</li>
+							<li>Containerized deployment</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-html5-plain"></i> HTML</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-css3-plain"></i> CSS</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-javascript-plain"></i> JavaScript</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-php-plain"></i> PHP</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-docker-plain"></i> Docker</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nginx-original"></i> Nginx</span
+							>
+						</div>
+					</div>
+				</div>
 
-<section id="contact">
-  <div class="section-title"><span class="icon">✉️</span> Contact Me</div>
-  <div class="contact-wrap fade-in">
-    <div class="contact-info">
-      <h3>Contact Me</h3>
-      <p>I'm open to new opportunities and collaborations. Feel free to reach out!</p>
-      <div class="contact-item">
-        <div class="ci-icon"><img width="24" height="18" src="./static/gmail_inline.svg" alt="Send email"/></div>
-        <div>
-          <div class="ci-label">Email</div>
-          <div class="ci-val">robungidquestion@gmail.com</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="ci-icon"><img width="24" height="24" src="./static/telegram_inline.svg" alt="Message in Telegram"/></div>
-        <div>
-          <div class="ci-label">Telegram</div>
-          <div class="ci-val">@RobunGidDev</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="ci-icon"><img width="24" height="24" src="./static/location.svg" alt="Location"/></div>
-        <div>
-          <div class="ci-label">Location</div>
-          <div class="ci-val">Remote / Worldwide</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="form-title">Send Me a Message</div>
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-field">
-            <label>Your Name</label>
-            <input type="text" placeholder="Your Name" required>
-          </div>
-          <div class="form-field">
-            <label>Your Email</label>
-            <input type="email" placeholder="Your Email" required>
-          </div>
-        </div>
-        <div class="form-field">
-          <label>Subject</label>
-          <input type="text" placeholder="Subject" required>
-        </div>
-        <div class="form-field">
-          <label>Message</label>
-          <textarea placeholder="Message" required></textarea>
-        </div>
-        <button type="submit" class="btn-send">✈ Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
+				<div class="project-card fade-in">
+					<div class="project-thumb">📊</div>
+					<div class="project-body">
+						<div class="project-title">4. DJCRM System</div>
+						<p class="project-desc">Full CRM system built with Django</p>
+						<ul class="project-features">
+							<li>Authentication and user profiles</li>
+							<li>
+								Dashboard with CRUD for leads, clients, products, orders
+							</li>
+							<li>Team system with roles, invitations, permissions</li>
+							<li>
+								Internal chat, notifications, file uploads, data export
+							</li>
+							<li>Subscription model structure</li>
+							<li>Dockerized deployment</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-django-plain"></i> Django</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-python-plain"></i> Python</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-postgresql-plain"></i> PostgreSQL</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-docker-plain"></i> Docker</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nginx-original"></i> Nginx</span
+							>
+						</div>
+					</div>
+				</div>
 
-<footer>
-  <div class="f-logo">
-   <img class="box" src="./static/logo.png" alt="Logo" />
-    Robun Gid
-  </div>
-  <div class="f-copy">© 2024 Robun Gid. All rights reserved.</div>
-  <div class="social-links">
-    <a href="https://t.me/RobunGidDev" title="GitHub">
-      <i class="devicon-github-original"></i>
-    </a>
-    <a href="https://t.me/RobunGidDev" title="Telegram">
-      <img width="24" height="24" src="./static/telegram_inline.svg" alt="Message in Telegram"/>
-    </a>
-	<a href="mailto:robungidquestion@gmail.com" title="Email">
-		<img width="24" height="24" src="./static/gmail_inline.svg" alt="Write email"/>
-	</a>
-  </div>
-</footer>
+				<div class="project-card fade-in">
+					<div class="project-thumb">🔒</div>
+					<div class="project-body">
+						<div class="project-title">5. 3x-UI (VLESS) VPN Service</div>
+						<p class="project-desc">Personal VPN infrastructure setup</p>
+						<ul class="project-features">
+							<li>VPN server deployment and configuration</li>
+							<li>SSH and TLS security setup</li>
+							<li>Firewall configuration (ufw, iptables)</li>
+							<li>Routing and management panel configuration</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-linux-plain"></i> Linux</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-nginx-original"></i> Nginx</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-docker-plain"></i> Docker</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-ubuntu-plain"></i> UFW</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-ssh-plain"></i> TLS</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-vscode-plain"></i> VLESS</span
+							>
+						</div>
+					</div>
+				</div>
 
-<script src="script.min.js"></script>
-</body>
+				<div class="project-card fade-in">
+					<div class="project-thumb">🤖</div>
+					<div class="project-body">
+						<div class="project-title">6. Stashify Telegram Bot</div>
+						<p class="project-desc">Educational resources management bot</p>
+						<ul class="project-features">
+							<li>Role system (user, moderator, admin)</li>
+							<li>Resource storage and management system</li>
+							<li>Learning quizzes with quizzes and result tracking</li>
+							<li>Admin panel inside Telegram bot</li>
+						</ul>
+						<div class="tech-tags">
+							<span class="tech-tag"
+								><i class="devicon-python-plain"></i> Aiogram</span
+							>
+							<span class="tech-tag"
+								><i class="devicon-python-plain"></i> Python</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="experience">
+			<div class="section-title"><span class="icon">⭐</span> Work Experience</div>
+			<div class="exp-timeline fade-in">
+				<div class="exp-job">
+					<div class="exp-job-header">
+						<div class="exp-job-meta">
+							<div class="exp-company">
+								LLC "Partner"
+								<span class="exp-company-desc"
+									>· Plastic Recycling & Processing</span
+								>
+							</div>
+							<div class="exp-role">System Administrator</div>
+							<div class="exp-period">
+								June 2025 — November 2025
+								<span class="exp-duration">· 6 months</span>
+							</div>
+						</div>
+						<a class="exp-link" href="https://CHANGEME.COM"
+							>Visit Company Website</a
+						>
+					</div>
+					<div class="exp-duties">
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Administration, configuration,
+							and maintenance of workstations and servers (Windows, Linux)
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>OS and software deployment:
+							Windows, Linux, 1C, SolidWorks, AutoCAD and others
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Automated backup systems setup
+							and management via scripting
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Information security: antivirus
+							deployment, network infrastructure protection, user access
+							management
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Hardware work: assembly,
+							servicing, and upgrades of workstations and peripherals
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Website support and debugging
+							(PHP, HTML, CSS, JS)
+						</div>
+					</div>
+				</div>
+
+				<div class="exp-divider"></div>
+
+				<div class="exp-job">
+					<div class="exp-job-header">
+						<div class="exp-job-meta">
+							<div class="exp-company">
+								Hautte.ru
+								<span class="exp-company-desc"
+									>· Elite Real Estate & Investment Platform</span
+								>
+							</div>
+							<div class="exp-role">Lead Full-Stack Developer</div>
+							<div class="exp-period">
+								December 2026 — May 2026
+								<span class="exp-duration">· 5 months</span>
+							</div>
+						</div>
+						<a class="exp-link exp-link--alt" href="https://hautte.ru"
+							>Visit Company Website</a
+						>
+					</div>
+					<div class="exp-duties">
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Architected and built
+							end-to-end: REST API (FastAPI), Next.JS frontend, PostgreSQL
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Containerized the entire
+							infrastructure with Docker and Docker Compose
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Set up CI/CD pipelines via
+							GitHub Actions — automated testing, builds, and zero-downtime
+							deployments
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Pixel-perfect implementation of
+							UI/UX mockups; built reusable component library
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Full server administration on
+							VPS: Nginx, SSL, SSH, Docker, VDS panel
+						</div>
+						<div class="exp-duty">
+							<span class="duty-dot"></span>Ongoing feature development,
+							performance optimization, and support for the platform
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<div class="section-title"><span class="icon">✉️</span> Contact Me</div>
+			<div class="contact-wrap fade-in">
+				<div class="contact-info">
+					<h3>Contact Me</h3>
+					<p>
+						I'm open to new opportunities and collaborations. Feel free to
+						reach out!
+					</p>
+					<div class="contact-item">
+						<div class="ci-icon">
+							<img
+								width="24"
+								height="18"
+								src="./static/gmail_inline.svg"
+								alt="Send email"
+							/>
+						</div>
+						<div>
+							<div class="ci-label">Email</div>
+							<div class="ci-val">robungidquestion@gmail.com</div>
+						</div>
+					</div>
+					<div class="contact-item">
+						<div class="ci-icon">
+							<img
+								width="24"
+								height="24"
+								src="./static/telegram_inline.svg"
+								alt="Message in Telegram"
+							/>
+						</div>
+						<div>
+							<div class="ci-label">Telegram</div>
+							<div class="ci-val">@RobunGidDev</div>
+						</div>
+					</div>
+					<div class="contact-item">
+						<div class="ci-icon">
+							<img
+								width="24"
+								height="24"
+								src="./static/location.svg"
+								alt="Location"
+							/>
+						</div>
+						<div>
+							<div class="ci-label">Location</div>
+							<div class="ci-val">Remote / Worldwide</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="form-title">Send Me a Message</div>
+					<form onsubmit="handleSubmit(event)">
+						<div class="form-row">
+							<div class="form-field">
+								<label>Your Name</label>
+								<input type="text" placeholder="Your Name" required />
+							</div>
+							<div class="form-field">
+								<label>Your Email</label>
+								<input type="email" placeholder="Your Email" required />
+							</div>
+						</div>
+						<div class="form-field">
+							<label>Subject</label>
+							<input type="text" placeholder="Subject" required />
+						</div>
+						<div class="form-field">
+							<label>Message</label>
+							<textarea placeholder="Message" required></textarea>
+						</div>
+						<button type="submit" class="btn-send">✈ Send Message</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="f-logo">
+				<img class="box" src="./static/logo.png" alt="Logo" />
+				Robun Gid
+			</div>
+			<div class="f-copy">© 2024 Robun Gid. All rights reserved.</div>
+			<div class="social-links">
+				<a href="https://t.me/RobunGidDev" title="GitHub">
+					<i class="devicon-github-original"></i>
+				</a>
+				<a href="https://t.me/RobunGidDev" title="Telegram">
+					<img
+						width="24"
+						height="24"
+						src="./static/telegram_inline.svg"
+						alt="Message in Telegram"
+					/>
+				</a>
+				<a href="mailto:robungidquestion@gmail.com" title="Email">
+					<img
+						width="24"
+						height="24"
+						src="./static/gmail_inline.svg"
+						alt="Write email"
+					/>
+				</a>
+			</div>
+		</footer>
+
+		<script src="script.min.js"></script>
+	</body>
 </html>
