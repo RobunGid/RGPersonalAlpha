@@ -87,7 +87,7 @@ contactFormElement.addEventListener('submit', async (event) => {
 	if (!event.target.checkValidity()) {
 		return;
 	}
-	const formData = new FormData(event.target);
+	const formData = new FormData(contactFormElement);
 	const message = {};
 	formData.forEach((value, key) => (message[key] = value));
 	fetch(BACKEND_URL, {
