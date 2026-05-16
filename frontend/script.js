@@ -1,322 +1,91 @@
-import { animate, hover, inView } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
-
-const VIEWPORT_OFFSET = 250;
-const SCROLL_OFFSET = 30;
-const MESSAGE_INPUT_MIN_LENGTH = 8;
-const MESSAGE_INPUT_MAX_LENGTH = 1280;
-
-const BACKEND_URL = "https://robgid.space/api/send"
-
-// animate('.main--img', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
-//   duration: 3,
-//   easing: 'spring',
-//   stiffness: 300,
-//   damping: 10,
-//   repeat: Infinity
-// });
-
-hover(".header--logo-container", (element) => {
-    animate(element, { scale: 1.1, rotate: 4 }, { type: "spring" });
-
-    return () => animate(element, { scale: 1, rotate: 0 }, { type: "spring" });
+const burger = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+	mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach((a) => {
+	a.addEventListener('click', () => mobileMenu.classList.remove('open'));
 });
 
-hover(".stats--item", (element) => {
-    animate(element.querySelectorAll(".stats--icon, .stats--title, .stats--subtitle"), { scale: 1.1, y: -5 }, { type: "spring" });
-
-    return () => animate(element.querySelectorAll(".stats--icon, .stats--title, .stats--subtitle"), { scale: 1, y: 0 }, { type: "spring" });
-});
-
-hover(".about--item", (element) => {
-    animate(element.querySelectorAll(".about--icon"), { scale: 1.1, y: -5, rotate: 7 }, { type: "spring" });
-
-    return () => animate(element.querySelectorAll(".about--icon"), { scale: 1, y: 0, rotate: 0 }, { type: "spring" });
-});
-
-hover(".header--navbar-item", (element) => {
-	animate(element, {scale: 1.05,}, { type: "spring"});
-	return () => animate(element, { scale: 1}, { type: "spring" });
-});
-
-hover(".about--list-item", (element) => {
-	animate(element, {scale: 1.03,}, { type: "spring"});
-	animate(element.querySelector(".about--inline-icon"), {scale: 1.05,}, { type: "spring"});
-	return () => {
-		animate(element, { scale: 1}, { type: "spring" });
-		animate(element.querySelector(".about--inline-icon"), {scale: 1,}, { type: "spring"});
-};
-});
-
-hover(".projects--tech-item", (element) => {
-	animate(element, {scale: 1.03,}, { type: "spring"});
-	return () => {
-		animate(element, { scale: 1}, { type: "spring" });
-};
-});
-
-hover(".projects--image-container", (element) => {
-	animate(element.querySelector(".projects--image"), {scale: 1.05,}, { type: "spring"});
-	return () => {
-		animate(element.querySelector(".projects--image"), { scale: 1}, { type: "spring" });
-	};
-});
-
-hover(".projects--item", (element) => {
-	animate(element, {scale: 1.05,}, { type: "spring"});
-	return () => {
-		animate(element, { scale: 1}, { type: "spring" });
-	};
-});
-
-hover(".btn--down-arrow", (element) => {
-	animate(element, {scale: 1.1,}, { type: "spring"});
-	return () => {
-		animate(element, { scale: 1}, { type: "spring" });
-	};
-});
-
-// animate('.about-photo', { y: [0, -5, 0], rotate: [0, -2, 2, 0], scale: [1, 1.05, 0.95, 1] }, {
-//   duration: 3,
-//   easing: 'spring',
-//   stiffness: 300,
-//   damping: 10,
-//   repeat: Infinity
-// });
-
-const headingNameElement = document.querySelector("#heading-name");
-const text = headingNameElement.dataset.text;
-
-headingNameElement.innerHTML = "";
-text.split("").forEach((char, i) => {
-	const p = document.createElement("p")
-	p.textContent = char === " " ? "\u00A0" : char;
-	p.style.opacity = "0";
-	p.style.transform = "translateX(-30px)";
-	headingNameElement.appendChild(p);
-})
-
-inView(headingNameElement, () => {
-  headingNameElement.querySelectorAll("p").forEach((p, i) => {
-    animate(p, 
-      { opacity: 1, x: 0 },
-      { duration: 0.5, delay: i * 0.1 }
-    )
-  })
-}, { once: true });
-
-const skillsDropdownButtons = document.querySelectorAll('.skills--btn-dropdown')
-
-skillsDropdownButtons.forEach(button => {
-	button.addEventListener("click", event => {
-		event.currentTarget.classList.toggle('skills--btn-dropdown__flipped')
-		event.currentTarget.parentNode.parentNode.nextElementSibling.nextElementSibling.classList.toggle("skills__hidden")
-	})
-})
-
-hover(".skills--item", (element) => {
-	animate(element, {scale: 1.03, y: -5});
-	animate(element.querySelector('.skills--item-icon'), {scale: 1.1, rotate: 10, y: -5});
-	return () => {
-		animate(element, { scale: 1, y: 0});
-		animate(element.querySelector('.skills--item-icon'), {scale: 1, rotate: 0, y: 0});
-	};
-});
-
-hover(".skills-stats--item", (element) => {
-	animate(element, {scale: 1.03, y: -5});
-	animate(element.querySelector('.skills-stats--item-icon'), {scale: 1.1, rotate: 10, y: -5});
-	return () => {
-		animate(element, { scale: 1, y: 0});
-		animate(element.querySelector('.skills-stats--item-icon'), {scale: 1, rotate: 0, y: 0});
-	};
-});
-
-hover(".pluses--item", (element) => {
-	animate(element, {scale: 1.04,}, { type: "spring"});
-	return () => {
-		animate(element, { scale: 1}, { type: "spring" });
-	};
-});
-
-hover(".contact--list-item__animated", (element) => {
-    animate(element, { scale: 1.03, y: -1, rotate: 0.5, x: 1.5 }, { type: "spring" });
-
-    return () => animate(element, { scale: 1, y: 0, rotate: 0, x: 0 }, { type: "spring" });
-});
-
-hover(".circle-link", (element) => {
-    animate(element, { scale: 1.05, y: -5, rotate: 0.5 }, { type: "spring" });
-
-    return () => animate(element, { scale: 1, y: 0, rotate: 0 }, { type: "spring" });
-});
-
-const sections = ["main", "about", "projects", "skills", "contact"]
-
-const navbarItems = {
-  main: document.querySelector("#navbar-item--main"),
-  about: document.querySelector("#navbar-item--about"),
-  projects: document.querySelector("#navbar-item--projects"),
-  skills: document.querySelector("#navbar-item--skills"),
-  contact: document.querySelector("#navbar-item--contact"),
-}
-
-const rootElements = {
-  main: document.querySelector("#root-elem--main"),
-  about: document.querySelector("#root-elem--about"),
-  projects: document.querySelector("#root-elem--projects"),
-  skills: document.querySelector("#root-elem--skills"),
-  contact: document.querySelector("#root-elem--contact"),
-}
-
-const changeActiveNavbarItem = (navbarItem) => {
-	const currentActiveNavbarItems = document.querySelectorAll(".header--navbar-item__active");
-	currentActiveNavbarItems.forEach(item => item.classList.remove("header--navbar-item__active"));
-	navbarItem.classList.add("header--navbar-item__active");
-};
-
-document.addEventListener("scroll", event => {
-	for (const section of sections) {
-		const rect = rootElements[section].getBoundingClientRect();
-		const currentNavbarItem = navbarItems[section];
-		if (rect.top <= VIEWPORT_OFFSET && rect.top >= -1 * VIEWPORT_OFFSET) {
-			changeActiveNavbarItem(currentNavbarItem);
-		}
-	}
-})
-
-const headerNavbarElement = document.querySelector(".header--navbar");
-
-headerNavbarElement.addEventListener('click', (event) => {
-	const targetElem = event.target.closest(".header--navbar-item");
-	if (!targetElem) return;
-
-	const targetSection = targetElem.id.split('--')[1];
-	const targetRootElement = rootElements[targetSection];
-	const bodyRect = document.body.getBoundingClientRect();
-	const targetRect = targetRootElement.getBoundingClientRect();
-
-	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
-})
-
-const messageInputElement = document.querySelector("#message-input");
-const messageInputErrorElement = document.querySelector("#message-input-error");
-let isMessageInputTouched = false;
-let lastMessageInputValue;
-const messageInputLengthElement = document.querySelector(".contact--input-length")
-const messageInputCurrentLengthElement = document.querySelector("#message-input-current-length");
-const messageInputMaxLengthElement = document.querySelector("#message-input-max-length");
-
-messageInputMaxLengthElement.textContent = MESSAGE_INPUT_MAX_LENGTH;
-
-messageInputElement.addEventListener('blur', () => {
-	isMessageInputTouched = true;
-})
-
-messageInputElement.addEventListener("input", (event) => {
-	if (messageInputElement.value.length <= MESSAGE_INPUT_MIN_LENGTH && isMessageInputTouched) {
-		messageInputErrorElement.classList.remove("contact--error-message__hidden");
-		messageInputElement.classList.add("contact--textarea__error");
-	} else {
-		messageInputErrorElement.classList.add("contact--error-message__hidden");
-		messageInputElement.classList.remove("contact--textarea__error");
-	}
-	if (messageInputElement.value.length > MESSAGE_INPUT_MAX_LENGTH) {
-		messageInputElement.value = lastMessageInputValue;
-		messageInputLengthElement.classList.remove("contact--input-length__blink");
-		void messageInputLengthElement.offsetWidth;
-		messageInputLengthElement.classList.add("contact--input-length__blink");
-	}
-	messageInputCurrentLengthElement.textContent = messageInputElement.value.length;
-	lastMessageInputValue = messageInputElement.value;
-})
-
-const btnViewProjectsElement = document.querySelector("#btn-view-projects");
-
-btnViewProjectsElement.addEventListener('click', () => {
-	const targetRootElement = rootElements["projects"];
-	const bodyRect = document.body.getBoundingClientRect();
-	const targetRect = targetRootElement.getBoundingClientRect();
-
-	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
-})
-
-const btnContactElement = document.querySelector("#btn-contact");
-
-btnContactElement.addEventListener('click', () => {
-	const targetRootElement = rootElements["contact"];
-	const bodyRect = document.body.getBoundingClientRect();
-	const targetRect = targetRootElement.getBoundingClientRect();
-
-	window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
-})
-
-const btnToContactElements = document.querySelectorAll(".pluses--item-btn");
-
-btnToContactElements.forEach(btn => {
-	btn.addEventListener('click', () => {
-		const targetRootElement = rootElements["contact"];
-		const bodyRect = document.body.getBoundingClientRect();
-		const targetRect = targetRootElement.getBoundingClientRect();
-
-		window.scrollTo({behavior: "smooth", top: targetRect.top - bodyRect.top - SCROLL_OFFSET});
-	})
-})
-
-const viewSiteBtnElements = document.querySelectorAll("[data-open-link]");
-
-viewSiteBtnElements.forEach(btn => {
-	btn.addEventListener('click', (event) => {
-		window.open(
-			event.target.dataset.openLink,
-			'_blank'
-		)
-	})
-})
-
-const modalSuccessElement = document.querySelector("#modal-success");
-const modalSuccessContentElement = modalSuccessElement.querySelector(".modal--content");
-
-const modalSuccessCloseBtnElement = document.querySelector("#modal-success .modal--close");
-modalSuccessCloseBtnElement.addEventListener("click", () => {
-	modalSuccessElement.classList.add("modal__hidden");
-})
-
-document.addEventListener("click", (event) => {
-	if (event.target != modalSuccessContentElement && !event.target.closest(".modal--content")) {
-		modalSuccessElement.classList.add("modal__hidden");
-	}
-})
-
-const contactFormElement = document.querySelector(".contact--form");
-
-contactFormElement.addEventListener("submit", async (event) => {
-	event.preventDefault();
-	if (!event.target.checkValidity()) {
-		return;
-	}
-	const formData = new FormData(contactFormElement);
-	const message = {}
-	formData.forEach((value, key) => message[key] = value);
-	fetch(BACKEND_URL, {
-		method: "POST",
-		body: JSON.stringify(message),
-		  headers: {
-   			 "Content-type": "application/json; charset=UTF-8"
-  			}
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+	let current = '';
+	sections.forEach((s) => {
+		if (window.scrollY >= s.offsetTop - 80) current = s.id;
 	});
-	modalSuccessElement.classList.remove("modal__hidden");
-	contactFormElement.reset();
+	navLinks.forEach((a) => {
+		a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+	});
 });
 
-const themeToggleElement = document.querySelector("#themeToggle");
+const fadeEls = document.querySelectorAll('.fade-in');
+const io = new IntersectionObserver(
+	(entries) => {
+		entries.forEach((e) => {
+			if (e.isIntersecting) e.target.classList.add('visible');
+		});
+	},
+	{ threshold: 0.1 }
+);
+fadeEls.forEach((el) => io.observe(el));
 
-const defaultTheme = localStorage.getItem("theme");
-if (defaultTheme !== null) {
-	themeToggleElement.checked = defaultTheme === "dark";
+function handleSubmit(e) {
+	e.preventDefault();
+	const btn = e.target.querySelector('.btn-send');
+	btn.textContent = '✅ Sent!';
+	btn.style.background = '#22d3a5';
+	setTimeout(() => {
+		btn.textContent = '✈ Send Message';
+		btn.style.background = '';
+		e.target.reset();
+	}, 3000);
 }
 
-themeToggleElement.addEventListener("input", (event) => {
-	const theme = event.target.checked ? 'dark' : "light";
-	document.documentElement.setAttribute('data-theme', theme);
-	localStorage.setItem("theme", theme);
-})
+const icons = document.querySelectorAll('.ts-icon');
+const activeName = document.getElementById('tsActiveName');
+let currentIdx = 0;
+let hovering = false;
+
+function setName(text) {
+	activeName.classList.add('fade-out');
+	activeName.classList.remove('fade-in-up');
+
+	setTimeout(() => {
+		activeName.textContent = text || '\u00a0';
+		activeName.classList.remove('fade-out');
+		activeName.classList.add('fade-in-up');
+
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				activeName.classList.remove('fade-in-up');
+			});
+		});
+	}, 220);
+}
+
+function spotlight(idx) {
+	icons.forEach((el) => el.classList.remove('spotlight'));
+	const el = icons[idx];
+	el.classList.add('spotlight');
+	setName(el.dataset.title);
+	currentIdx = idx;
+}
+
+setInterval(() => {
+	if (!hovering) spotlight((currentIdx + 1) % icons.length);
+}, 1800);
+
+icons.forEach((el) => {
+	el.addEventListener('mouseenter', () => {
+		hovering = true;
+		icons.forEach((e) => e.classList.remove('spotlight'));
+		setName(el.dataset.title);
+	});
+	el.addEventListener('mouseleave', () => {
+		hovering = false;
+		setName('\u00a0');
+	});
+});
+
+spotlight(0);
