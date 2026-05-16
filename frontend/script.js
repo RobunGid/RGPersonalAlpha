@@ -1,3 +1,5 @@
+const BACKEND_URL = 'https://robgid.space/api/send';
+
 const burger = document.getElementById('burgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 burger.addEventListener('click', () => {
@@ -29,18 +31,6 @@ const io = new IntersectionObserver(
 	{ threshold: 0.1 }
 );
 fadeEls.forEach((el) => io.observe(el));
-
-function handleSubmit(e) {
-	e.preventDefault();
-	const btn = e.target.querySelector('.btn-send');
-	btn.textContent = '✅ Sent!';
-	btn.style.background = '#22d3a5';
-	setTimeout(() => {
-		btn.textContent = '✈ Send Message';
-		btn.style.background = '';
-		e.target.reset();
-	}, 3000);
-}
 
 const icons = document.querySelectorAll('.ts-icon');
 const activeName = document.getElementById('tsActiveName');
@@ -89,3 +79,31 @@ icons.forEach((el) => {
 });
 
 spotlight(0);
+
+const contactFormElement = document.querySelector('#contact-form');
+
+contactFormElement.addEventListener('submit', async (event) => {
+	event.preventDefault();
+	if (!event.target.checkValidity()) {
+		return;
+	}
+	const formData = new FormData(event.target);
+	const message = {};
+	formData.forEach((value, key) => (message[key] = value));
+	fetch(BACKEND_URL, {
+		method: 'POST',
+		body: JSON.stringify(message),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	});
+	event.target.reset();
+	const btn = event.target.querySelector('.btn-send');
+	btn.textContent = '✅ Sent!';
+	btn.style.background = '#22d3a5';
+	setTimeout(() => {
+		btn.textContent = '✈ Send Message';
+		btn.style.background = '';
+		event.target.reset();
+	}, 3000);
+});
