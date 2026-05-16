@@ -687,6 +687,34 @@ section {
 	}
 }
 
+.project-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin-top: 12px;
+	font-family: $font-mono;
+	font-size: 0.72rem;
+	color: $cyan;
+	text-decoration: none;
+	opacity: 0.75;
+	@include transition(opacity 0.2s ease, gap 0.2s ease);
+
+	&::after {
+		content: '→';
+		display: inline-block;
+		@include transition(transform 0.2s ease);
+	}
+
+	&:hover {
+		opacity: 1;
+		gap: 8px;
+
+		&::after {
+			transform: translate(2px, -2px);
+		}
+	}
+}
+
 .tech-tags {
 	display: flex;
 	flex-wrap: wrap;
