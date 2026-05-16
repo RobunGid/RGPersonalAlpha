@@ -41,3 +41,51 @@ function handleSubmit(e) {
 		e.target.reset();
 	}, 3000);
 }
+
+const icons = document.querySelectorAll('.ts-icon');
+const activeName = document.getElementById('tsActiveName');
+let currentIdx = 0;
+let hovering = false;
+
+function setName(text) {
+	activeName.classList.add('fade-out');
+	activeName.classList.remove('fade-in-up');
+
+	setTimeout(() => {
+		activeName.textContent = text || '\u00a0';
+		activeName.classList.remove('fade-out');
+		activeName.classList.add('fade-in-up');
+
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				activeName.classList.remove('fade-in-up');
+			});
+		});
+	}, 220);
+}
+
+function spotlight(idx) {
+	icons.forEach((el) => el.classList.remove('spotlight'));
+	const el = icons[idx];
+	el.classList.add('spotlight');
+	setName(el.dataset.title);
+	currentIdx = idx;
+}
+
+setInterval(() => {
+	if (!hovering) spotlight((currentIdx + 1) % icons.length);
+}, 1800);
+
+icons.forEach((el) => {
+	el.addEventListener('mouseenter', () => {
+		hovering = true;
+		icons.forEach((e) => e.classList.remove('spotlight'));
+		setName(el.dataset.title);
+	});
+	el.addEventListener('mouseleave', () => {
+		hovering = false;
+		setName('\u00a0');
+	});
+});
+
+spotlight(0);

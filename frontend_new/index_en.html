@@ -121,6 +121,7 @@
 					</div>
 					<div class="t-line"><span class="t-cmd">$ whoami</span></div>
 					<div class="t-line"><span class="t-val">> developer</span></div>
+					<div class="t-line"><span class="t-val"></span></div>
 					<div class="t-line"><span class="t-cmd">$ stack --full</span></div>
 					<div class="t-line"><span class="t-val">> web_apps</span></div>
 					<div class="t-line"><span class="t-val">> devops</span></div>
@@ -130,80 +131,107 @@
 				</div>
 				<div class="techstack-card">
 					<div class="ts-label">Tech Stack</div>
+					<div class="ts-active-name" id="tsActiveName">&nbsp;</div>
 					<div class="ts-icons">
-						<div class="ts-icon" title="Linux">
+						<div class="ts-icon" title="Linux" data-title="Linux">
 							<i class="devicon-linux-plain"></i>
 						</div>
-						<div class="ts-icon" title="Bash">
-							<i class="devicon-bash-plain"></i>
-						</div>
-						<div class="ts-icon" title="Docker">
-							<i class="devicon-docker-plain"></i>
-						</div>
-						<div class="ts-icon" title="Nginx">
-							<i class="devicon-nginx-original"></i>
-						</div>
-						<div class="ts-icon" title="Networking">
-							<i class="devicon-cloudflare-plain"></i>
-						</div>
-						<div class="ts-icon" title="Git">
+						<div
+							class="ts-icon"
+							title="Git & GitHub & GitLab"
+							data-title="Git & GitHub & GitLab"
+						>
 							<i class="devicon-git-plain"></i>
 						</div>
-						<div class="ts-icon" title="GitHub Actions">
-							<i class="devicon-github-original"></i>
+						<div class="ts-icon" title="Python" data-title="Python">
+							<i class="devicon-python-plain"></i>
 						</div>
-						<div class="ts-icon" title="Ansible">
-							<i class="devicon-ansible-plain"></i>
-						</div>
-						<div class="ts-icon" title="Apache">
-							<i class="devicon-apache-plain"></i>
-						</div>
-						<div class="ts-icon" title="PowerShell">
-							<i class="devicon-windows8-original"></i>
-						</div>
-
-						<div class="ts-icon" title="HTML">
-							<i class="devicon-html5-plain"></i>
-						</div>
-						<div class="ts-icon" title="CSS">
-							<i class="devicon-css3-plain"></i>
-						</div>
-						<div class="ts-icon" title="JavaScript">
+						<div class="ts-icon" title="JavaScript" data-title="JavaScript">
 							<i class="devicon-javascript-plain"></i>
 						</div>
-						<div class="ts-icon" title="React">
-							<i class="devicon-react-original"></i>
+						<div class="ts-icon" title="HTML & CSS" data-title="HTML & CSS">
+							<i class="devicon-html5-plain"></i>
 						</div>
-						<div class="ts-icon" title="TypeScript">
-							<i class="devicon-typescript-plain"></i>
+						<div class="ts-icon" title="Bash" data-title="Bash">
+							<i class="devicon-bash-plain"></i>
 						</div>
-						<div class="ts-icon" title="Tailwind">
-							<i class="devicon-tailwindcss-plain"></i>
+						<div class="ts-icon" title="Docker" data-title="Docker">
+							<i class="devicon-docker-plain"></i>
 						</div>
-						<div class="ts-icon" title="Redux">
-							<i class="devicon-redux-original"></i>
-						</div>
-						<div class="ts-icon" title="Sass">
-							<i class="devicon-sass-original"></i>
-						</div>
-
-						<div class="ts-icon" title="Python">
-							<i class="devicon-python-plain"></i>
-						</div>
-						<div class="ts-icon" title="Flask">
-							<i class="devicon-flask-original"></i>
-						</div>
-						<div class="ts-icon" title="SQL">
+						<div class="ts-icon" title="SQL" data-title="SQL">
 							<i class="devicon-mysql-plain"></i>
 						</div>
-						<div class="ts-icon" title="SQLAlchemy">
+						<div class="ts-icon" title="React" data-title="React">
+							<i class="devicon-react-original"></i>
+						</div>
+						<div class="ts-icon" title="TypeScript" data-title="TypeScript">
+							<i class="devicon-typescript-plain"></i>
+						</div>
+						<div class="ts-icon" title="Nginx" data-title="Nginx">
+							<i class="devicon-nginx-original"></i>
+						</div>
+						<div class="ts-icon" title="FastAPI" data-title="FastAPI">
+							<i class="devicon-fastapi-plain"></i>
+						</div>
+						<div
+							class="ts-icon"
+							title="Tailwind CSS"
+							data-title="Tailwind CSS"
+						>
+							<i class="devicon-tailwindcss-plain"></i>
+						</div>
+						<div class="ts-icon" title="SQLAlchemy" data-title="SQLAlchemy">
 							<i class="devicon-sqlalchemy-plain"></i>
 						</div>
-						<div class="ts-icon" title="Django">
+						<div
+							class="ts-icon"
+							title="GitHub Actions"
+							data-title="GitHub Actions"
+						>
+							<i class="devicon-github-original"></i>
+						</div>
+						<div class="ts-icon" title="Django" data-title="Django">
 							<i class="devicon-django-plain"></i>
 						</div>
-						<div class="ts-icon" title="Aiogram">
+						<div class="ts-icon" title="Networking" data-title="Networking">
+							<i class="devicon-cloudflare-plain"></i>
+						</div>
+						<div class="ts-icon" title="Redux & RTK" data-title="Redux & RTK">
+							<i class="devicon-redux-original"></i>
+						</div>
+						<div class="ts-icon" title="Vue" data-title="Vue">
+							<i class="devicon-vuejs-plain"></i>
+						</div>
+						<div class="ts-icon" title="Flask" data-title="Flask">
+							<i class="devicon-flask-original"></i>
+						</div>
+						<div class="ts-icon" title="Sass" data-title="Sass">
+							<i class="devicon-sass-original"></i>
+						</div>
+						<div class="ts-icon" title="Ansible" data-title="Ansible">
+							<i class="devicon-ansible-plain"></i>
+						</div>
+						<div class="ts-icon" title="C++" data-title="C++">
+							<i class="devicon-cplusplus-plain"></i>
+						</div>
+						<div class="ts-icon" title="Less" data-title="Less">
+							<i class="devicon-less-plain-wordmark"></i>
+						</div>
+						<div class="ts-icon" title="Pinia" data-title="Pinia">
+							<i class="devicon-vuejs-plain"></i>
+						</div>
+						<div class="ts-icon" title="Aiogram" data-title="Aiogram">
 							<i class="devicon-python-plain"></i>
+						</div>
+						<div
+							class="ts-icon"
+							title="Apache Web Server"
+							data-title="Apache Web Server"
+						>
+							<i class="devicon-apache-plain"></i>
+						</div>
+						<div class="ts-icon" title="PowerShell" data-title="PowerShell">
+							<i class="devicon-windows8-original"></i>
 						</div>
 					</div>
 				</div>
@@ -214,16 +242,17 @@
 			<div class="section-title"><span class="icon">👤</span> Overview</div>
 			<div class="card fade-in">
 				<p>
-					Fullstack develope and system administrator with ~1.5 years of
+					Fullstack developer and system administrator with ~1.5 years of
 					experience. Works across frontend, backend, DevOps, and
 					infrastructure. Focus on scalable architecture, performance,
 					automation, and production-ready deployment. Comfortable with both
 					Linux/Windows environments and modern web stacks.
 				</p>
 				<p>
-					Core strengths include building full-stack web applications, managing
-					servers and networking, implementing CI/CD pipelines, working with
-					databases, and developing automation scripts.
+					Core strengths are building full-stack web applications, managing
+					servers, networking, creating telegram solutions (bots), implementing
+					CI/CD pipelines, working with databases, and developing automation
+					scripts.
 				</p>
 			</div>
 		</section>
@@ -728,16 +757,15 @@
 							<span class="tech-tag"
 								><i class="devicon-python-plain"></i> Python</span
 							>
-					</div>
-					<a
-						href="https://github.com/RobunGid/Stashify"
-						class="project-link"
-						target="_blank"
-						rel="noopener"
-					>
-						View on GitHub
-					</a>
-				</div>
+							<a
+								href="https://github.com/RobunGid/Stashify"
+								class="project-link"
+								target="_blank"
+								rel="noopener"
+							>
+								View on GitHub
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -930,9 +958,9 @@
 				<img class="box" src="./static/logo.png" alt="Logo" />
 				Robun Gid
 			</div>
-			<div class="f-copy">© 2024 Robun Gid. All rights reserved.</div>
+			<div class="f-copy">© 2026 Robun Gid. All rights reserved.</div>
 			<div class="social-links">
-				<a href="https://t.me/RobunGidDev" title="GitHub">
+				<a href="https://github.com/RobunGid" title="GitHub">
 					<i class="devicon-github-original"></i>
 				</a>
 				<a href="https://t.me/RobunGidDev" title="Telegram">
