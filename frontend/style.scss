@@ -1114,7 +1114,7 @@ footer {
 	}
 }
 
-@include respond-to($bp-md) {
+@include respond-to($bp-lg) {
 	.nav-links {
 		display: none;
 	}
@@ -1129,6 +1129,7 @@ footer {
 		.hero-right {
 			order: -1;
 			align-items: center;
+			grid-template-columns: 1fr;
 		}
 	}
 
