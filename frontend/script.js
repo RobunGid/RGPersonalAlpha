@@ -107,3 +107,33 @@ contactFormElement.addEventListener('submit', async (event) => {
 		event.target.reset();
 	}, 3000);
 });
+
+const params = new URLSearchParams(window.location.search);
+const current = params.get('lang') || 'ru';
+
+const switcher = document.getElementById('langSwitcher');
+const indicator = document.getElementById('langIndicator');
+const buttons = switcher.querySelectorAll('.lang-btn');
+
+function setLang(lang) {
+	buttons.forEach((btn) => {
+		btn.classList.toggle('active', btn.dataset.lang === lang);
+	});
+	if (lang === 'en') {
+		indicator.classList.add('right');
+	} else {
+		indicator.classList.remove('right');
+	}
+}
+
+setLang(current);
+
+buttons.forEach((btn) => {
+	btn.addEventListener('click', () => {
+		const lang = btn.dataset.lang;
+		if (lang === current) return;
+		const url = new URL(window.location.href);
+		url.searchParams.set('lang', lang);
+		window.location.href = url.toString();
+	});
+});

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="Fullstack web developer" />
-		<title>Robun Gid — Фуллстэк Разработчик & Системный Администратор</title>
+		<title>Робун Гид — Фуллстэк Разработчик & Системный Администратор</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -22,7 +22,7 @@
 		<nav id="navbar">
 			<a href="#home" class="nav-logo">
 				<img class="box" src="./static/logo.png" alt="Логотип" />
-				Robun Gid
+				Робун Гид
 			</a>
 			<ul class="nav-links">
 				<li><a href="#home" class="active">Главная</a></li>
@@ -33,6 +33,12 @@
 				<li><a href="#contact">Связаться со мной</a></li>
 			</ul>
 			<div class="nav-right">
+				<div class="lang-switcher" id="langSwitcher">
+					<button class="lang-btn" data-lang="ru">RU</button>
+					<span class="lang-divider"></span>
+					<button class="lang-btn" data-lang="en">EN</button>
+					<div class="lang-indicator" id="langIndicator"></div>
+				</div>
 				<button class="burger" id="burgerBtn" aria-label="Menu">
 					<span></span><span></span><span></span>
 				</button>
@@ -52,7 +58,7 @@
 				<div class="hero-label">
 					Фуллстэк Разработчик &amp; Системный Адмиинстратор
 				</div>
-				<h1 class="hero-name">Robun <span>Gid</span></h1>
+				<h1 class="hero-name">Robun <span>Гид</span></h1>
 				<div class="hero-tagline">
 					Разрабатываю масштабируемые платформы.<br />Автоматизирую
 					инфраструктуру.<br />Создаю решения для реальных задач
