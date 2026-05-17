@@ -1112,6 +1112,9 @@ footer {
 	.exp-grid {
 		grid-template-columns: repeat(3, 1fr);
 	}
+	.ts-icons {
+		justify-content: center;
+	}
 }
 
 @include respond-to($bp-lg) {
