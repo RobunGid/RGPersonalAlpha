@@ -529,7 +529,7 @@ nav {
 	&:hover {
 		transform: scale(1.15) translateY(-2px);
 		border-color: rgba($cyan, 0.5);
-		background: lighten($bg3, 5%);
+		background: $bg3;
 		z-index: 5;
 
 		i {
@@ -809,7 +809,7 @@ section {
 .exp-timeline {
 	display: flex;
 	flex-direction: column;
-	gap: 0;
+	gap: 30px;
 }
 
 .exp-job {
@@ -821,13 +821,6 @@ section {
 		border-color: rgba($cyan, 0.3);
 		transform: translateY(-1px);
 	}
-}
-
-.exp-divider {
-	width: 2px;
-	height: 24px;
-	background: linear-gradient(to bottom, rgba($cyan, 0.4), rgba($cyan, 0.1));
-	margin: 0 auto;
 }
 
 .exp-job-header {
@@ -847,7 +840,7 @@ section {
 .exp-company {
 	font-size: 0.95rem;
 	font-weight: 600;
-	color: $white; // or your light text variable
+	color: $white;
 
 	.exp-company-desc {
 		font-weight: 400;
