@@ -45,4 +45,4 @@ services:
       - ./certbot/conf:/etc/letsencrypt
 networks:
   rg-net:
-    external: true
+    driver: bridge
