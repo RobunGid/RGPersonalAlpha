@@ -1167,6 +1167,9 @@ footer {
 	.ts-icons {
 		justify-content: center;
 	}
+	.exp-job-header {
+		flex-direction: column;
+	}
 }
 
 @include respond-to($bp-lg) {
